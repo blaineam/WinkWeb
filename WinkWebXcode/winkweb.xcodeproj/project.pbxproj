@@ -1,0 +1,531 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		58E179081C40B88F0062EBFA /* png in Resources */ = {isa = PBXBuildFile; fileRef = 58E179041C40B88F0062EBFA /* png */; };
+		58E179091C40B88F0062EBFA /* css in Resources */ = {isa = PBXBuildFile; fileRef = 58E179051C40B88F0062EBFA /* css */; };
+		58E1790A1C40B88F0062EBFA /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 58E179061C40B88F0062EBFA /* index.html */; };
+		58E1790B1C40B88F0062EBFA /* js in Resources */ = {isa = PBXBuildFile; fileRef = 58E179071C40B88F0062EBFA /* js */; };
+		58E1790D1C40BDAB0062EBFA /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E1790C1C40BDAB0062EBFA /* WebKit.framework */; };
+		58EADC781C4190DE00727552 /* 16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EADC6F1C4190DE00727552 /* 16x16.png */; };
+		58EADC791C4190DE00727552 /* 24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EADC701C4190DE00727552 /* 24x24.png */; };
+		58EADC7A1C4190DE00727552 /* 32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EADC711C4190DE00727552 /* 32x32.png */; };
+		58EADC7B1C4190DE00727552 /* 48x48.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EADC721C4190DE00727552 /* 48x48.png */; };
+		58EADC7C1C4190DE00727552 /* 64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EADC731C4190DE00727552 /* 64x64.png */; };
+		58EADC7D1C4190DE00727552 /* 96x96.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EADC741C4190DE00727552 /* 96x96.png */; };
+		58EADC7E1C4190DE00727552 /* 128x128.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EADC751C4190DE00727552 /* 128x128.png */; };
+		58EADC7F1C4190DE00727552 /* 256x256.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EADC761C4190DE00727552 /* 256x256.png */; };
+		58EADC801C4190DE00727552 /* 512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EADC771C4190DE00727552 /* 512x512.png */; };
+		58EADC821C4190F200727552 /* 1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EADC811C4190F200727552 /* 1024.png */; };
+		B3A03A891AC7C44E00154AEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A03A881AC7C44E00154AEB /* AppDelegate.swift */; };
+		B3A03A8B1AC7C44E00154AEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3A03A8A1AC7C44E00154AEB /* Images.xcassets */; };
+		B3A03A8E1AC7C44E00154AEB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3A03A8C1AC7C44E00154AEB /* MainMenu.xib */; };
+		B3A03A9A1AC7C44E00154AEB /* PopupTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A03A991AC7C44E00154AEB /* PopupTestTests.swift */; };
+		B3A03AA61AC8A1BD00154AEB /* Status@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3A03AA41AC8A1BD00154AEB /* Status@2x.png */; };
+		B3A03AA71AC8A1BD00154AEB /* StatusHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3A03AA51AC8A1BD00154AEB /* StatusHighlighted@2x.png */; };
+		B3A03AA91AC8FFCE00154AEB /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A03AA81AC8FFCE00154AEB /* ContentViewController.swift */; };
+		B3C04A011ADB19C200D2CFE5 /* DummyControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C04A001ADB19C200D2CFE5 /* DummyControl.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B3A03A941AC7C44E00154AEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B3A03A7B1AC7C44E00154AEB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B3A03A821AC7C44E00154AEB;
+			remoteInfo = PopupTest;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		58E179041C40B88F0062EBFA /* png */ = {isa = PBXFileReference; lastKnownFileType = folder; path = png; sourceTree = "<group>"; };
+		58E179051C40B88F0062EBFA /* css */ = {isa = PBXFileReference; lastKnownFileType = folder; path = css; sourceTree = "<group>"; };
+		58E179061C40B88F0062EBFA /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		58E179071C40B88F0062EBFA /* js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = js; sourceTree = "<group>"; };
+		58E1790C1C40BDAB0062EBFA /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		58EADC6E1C41853D00727552 /* winkweb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = winkweb.entitlements; sourceTree = "<group>"; };
+		58EADC6F1C4190DE00727552 /* 16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 16x16.png; sourceTree = "<group>"; };
+		58EADC701C4190DE00727552 /* 24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 24x24.png; sourceTree = "<group>"; };
+		58EADC711C4190DE00727552 /* 32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 32x32.png; sourceTree = "<group>"; };
+		58EADC721C4190DE00727552 /* 48x48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 48x48.png; sourceTree = "<group>"; };
+		58EADC731C4190DE00727552 /* 64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 64x64.png; sourceTree = "<group>"; };
+		58EADC741C4190DE00727552 /* 96x96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 96x96.png; sourceTree = "<group>"; };
+		58EADC751C4190DE00727552 /* 128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 128x128.png; sourceTree = "<group>"; };
+		58EADC761C4190DE00727552 /* 256x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 256x256.png; sourceTree = "<group>"; };
+		58EADC771C4190DE00727552 /* 512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 512x512.png; sourceTree = "<group>"; };
+		58EADC811C4190F200727552 /* 1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1024.png; path = png/1024.png; sourceTree = "<group>"; };
+		B3A03A831AC7C44E00154AEB /* winkweb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = winkweb.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3A03A871AC7C44E00154AEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3A03A881AC7C44E00154AEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B3A03A8A1AC7C44E00154AEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B3A03A8D1AC7C44E00154AEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B3A03A931AC7C44E00154AEB /* winkweb.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = winkweb.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3A03A981AC7C44E00154AEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3A03A991AC7C44E00154AEB /* PopupTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupTestTests.swift; sourceTree = "<group>"; };
+		B3A03AA41AC8A1BD00154AEB /* Status@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Status@2x.png"; sourceTree = "<group>"; };
+		B3A03AA51AC8A1BD00154AEB /* StatusHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StatusHighlighted@2x.png"; sourceTree = "<group>"; };
+		B3A03AA81AC8FFCE00154AEB /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		B3C04A001ADB19C200D2CFE5 /* DummyControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyControl.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B3A03A801AC7C44E00154AEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58E1790D1C40BDAB0062EBFA /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3A03A901AC7C44E00154AEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		58E179031C40B8740062EBFA /* web */ = {
+			isa = PBXGroup;
+			children = (
+				58E179041C40B88F0062EBFA /* png */,
+				58E179051C40B88F0062EBFA /* css */,
+				58E179061C40B88F0062EBFA /* index.html */,
+				58E179071C40B88F0062EBFA /* js */,
+			);
+			name = web;
+			sourceTree = "<group>";
+		};
+		B3A03A7A1AC7C44E00154AEB = {
+			isa = PBXGroup;
+			children = (
+				58EADC6E1C41853D00727552 /* winkweb.entitlements */,
+				58E1790C1C40BDAB0062EBFA /* WebKit.framework */,
+				B3A03A851AC7C44E00154AEB /* PopupTest */,
+				B3A03A961AC7C44E00154AEB /* PopupTestTests */,
+				B3A03A841AC7C44E00154AEB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B3A03A841AC7C44E00154AEB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B3A03A831AC7C44E00154AEB /* winkweb.app */,
+				B3A03A931AC7C44E00154AEB /* winkweb.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B3A03A851AC7C44E00154AEB /* PopupTest */ = {
+			isa = PBXGroup;
+			children = (
+				58E179031C40B8740062EBFA /* web */,
+				B3A03AAA1AC9000E00154AEB /* src */,
+				B3A03AA31AC8A1AC00154AEB /* img */,
+				B3A03A861AC7C44E00154AEB /* Supporting Files */,
+			);
+			path = PopupTest;
+			sourceTree = "<group>";
+		};
+		B3A03A861AC7C44E00154AEB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B3A03A8C1AC7C44E00154AEB /* MainMenu.xib */,
+				B3A03A871AC7C44E00154AEB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B3A03A961AC7C44E00154AEB /* PopupTestTests */ = {
+			isa = PBXGroup;
+			children = (
+				B3A03A991AC7C44E00154AEB /* PopupTestTests.swift */,
+				B3A03A971AC7C44E00154AEB /* Supporting Files */,
+			);
+			path = PopupTestTests;
+			sourceTree = "<group>";
+		};
+		B3A03A971AC7C44E00154AEB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B3A03A981AC7C44E00154AEB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B3A03AA31AC8A1AC00154AEB /* img */ = {
+			isa = PBXGroup;
+			children = (
+				58EADC811C4190F200727552 /* 1024.png */,
+				58EADC6F1C4190DE00727552 /* 16x16.png */,
+				58EADC701C4190DE00727552 /* 24x24.png */,
+				58EADC711C4190DE00727552 /* 32x32.png */,
+				58EADC721C4190DE00727552 /* 48x48.png */,
+				58EADC731C4190DE00727552 /* 64x64.png */,
+				58EADC741C4190DE00727552 /* 96x96.png */,
+				58EADC751C4190DE00727552 /* 128x128.png */,
+				58EADC761C4190DE00727552 /* 256x256.png */,
+				58EADC771C4190DE00727552 /* 512x512.png */,
+				B3A03A8A1AC7C44E00154AEB /* Images.xcassets */,
+				B3A03AA41AC8A1BD00154AEB /* Status@2x.png */,
+				B3A03AA51AC8A1BD00154AEB /* StatusHighlighted@2x.png */,
+			);
+			name = img;
+			sourceTree = "<group>";
+		};
+		B3A03AAA1AC9000E00154AEB /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B3A03A881AC7C44E00154AEB /* AppDelegate.swift */,
+				B3A03AA81AC8FFCE00154AEB /* ContentViewController.swift */,
+				B3C04A001ADB19C200D2CFE5 /* DummyControl.swift */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B3A03A821AC7C44E00154AEB /* winkweb */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B3A03A9D1AC7C44E00154AEB /* Build configuration list for PBXNativeTarget "winkweb" */;
+			buildPhases = (
+				B3A03A7F1AC7C44E00154AEB /* Sources */,
+				B3A03A801AC7C44E00154AEB /* Frameworks */,
+				B3A03A811AC7C44E00154AEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = winkweb;
+			productName = PopupTest;
+			productReference = B3A03A831AC7C44E00154AEB /* winkweb.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B3A03A921AC7C44E00154AEB /* winkwebTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B3A03AA01AC7C44E00154AEB /* Build configuration list for PBXNativeTarget "winkwebTests" */;
+			buildPhases = (
+				B3A03A8F1AC7C44E00154AEB /* Sources */,
+				B3A03A901AC7C44E00154AEB /* Frameworks */,
+				B3A03A911AC7C44E00154AEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B3A03A951AC7C44E00154AEB /* PBXTargetDependency */,
+			);
+			name = winkwebTests;
+			productName = PopupTestTests;
+			productReference = B3A03A931AC7C44E00154AEB /* winkweb.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B3A03A7B1AC7C44E00154AEB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftMigration = 0720;
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Matsumoto Taichi";
+				TargetAttributes = {
+					B3A03A821AC7C44E00154AEB = {
+						CreatedOnToolsVersion = 6.3;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 1;
+							};
+						};
+					};
+					B3A03A921AC7C44E00154AEB = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = B3A03A821AC7C44E00154AEB;
+					};
+				};
+			};
+			buildConfigurationList = B3A03A7E1AC7C44E00154AEB /* Build configuration list for PBXProject "winkweb" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B3A03A7A1AC7C44E00154AEB;
+			productRefGroup = B3A03A841AC7C44E00154AEB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B3A03A821AC7C44E00154AEB /* winkweb */,
+				B3A03A921AC7C44E00154AEB /* winkwebTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B3A03A811AC7C44E00154AEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58EADC821C4190F200727552 /* 1024.png in Resources */,
+				58EADC7F1C4190DE00727552 /* 256x256.png in Resources */,
+				58EADC7B1C4190DE00727552 /* 48x48.png in Resources */,
+				58E1790A1C40B88F0062EBFA /* index.html in Resources */,
+				58E179091C40B88F0062EBFA /* css in Resources */,
+				58EADC801C4190DE00727552 /* 512x512.png in Resources */,
+				58E179081C40B88F0062EBFA /* png in Resources */,
+				58E1790B1C40B88F0062EBFA /* js in Resources */,
+				58EADC791C4190DE00727552 /* 24x24.png in Resources */,
+				58EADC7D1C4190DE00727552 /* 96x96.png in Resources */,
+				B3A03A8B1AC7C44E00154AEB /* Images.xcassets in Resources */,
+				B3A03A8E1AC7C44E00154AEB /* MainMenu.xib in Resources */,
+				58EADC781C4190DE00727552 /* 16x16.png in Resources */,
+				58EADC7A1C4190DE00727552 /* 32x32.png in Resources */,
+				58EADC7C1C4190DE00727552 /* 64x64.png in Resources */,
+				58EADC7E1C4190DE00727552 /* 128x128.png in Resources */,
+				B3A03AA71AC8A1BD00154AEB /* StatusHighlighted@2x.png in Resources */,
+				B3A03AA61AC8A1BD00154AEB /* Status@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3A03A911AC7C44E00154AEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B3A03A7F1AC7C44E00154AEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3A03AA91AC8FFCE00154AEB /* ContentViewController.swift in Sources */,
+				B3C04A011ADB19C200D2CFE5 /* DummyControl.swift in Sources */,
+				B3A03A891AC7C44E00154AEB /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3A03A8F1AC7C44E00154AEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3A03A9A1AC7C44E00154AEB /* PopupTestTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B3A03A951AC7C44E00154AEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B3A03A821AC7C44E00154AEB /* winkweb */;
+			targetProxy = B3A03A941AC7C44E00154AEB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B3A03A8C1AC7C44E00154AEB /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B3A03A8D1AC7C44E00154AEB /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B3A03A9B1AC7C44E00154AEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B3A03A9C1AC7C44E00154AEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B3A03A9E1AC7C44E00154AEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = winkweb.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PopupTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cenode.winkweb;
+				PRODUCT_NAME = winkweb;
+			};
+			name = Debug;
+		};
+		B3A03A9F1AC7C44E00154AEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = winkweb.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PopupTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cenode.winkweb;
+				PRODUCT_NAME = winkweb;
+			};
+			name = Release;
+		};
+		B3A03AA11AC7C44E00154AEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PopupTestTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.taichino.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = winkweb;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/winkweb.app/Contents/MacOS/winkweb";
+			};
+			name = Debug;
+		};
+		B3A03AA21AC7C44E00154AEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PopupTestTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.taichino.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = winkweb;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/winkweb.app/Contents/MacOS/winkweb";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B3A03A7E1AC7C44E00154AEB /* Build configuration list for PBXProject "winkweb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3A03A9B1AC7C44E00154AEB /* Debug */,
+				B3A03A9C1AC7C44E00154AEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B3A03A9D1AC7C44E00154AEB /* Build configuration list for PBXNativeTarget "winkweb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3A03A9E1AC7C44E00154AEB /* Debug */,
+				B3A03A9F1AC7C44E00154AEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B3A03AA01AC7C44E00154AEB /* Build configuration list for PBXNativeTarget "winkwebTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3A03AA11AC7C44E00154AEB /* Debug */,
+				B3A03AA21AC7C44E00154AEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B3A03A7B1AC7C44E00154AEB /* Project object */;
+}
