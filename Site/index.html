@@ -2,8 +2,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script type="text/javascript" src="js/wink.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/wink.js"></script>
 <script type="text/javascript" src="js/dhtmlxslider.js"></script>
 <link rel="stylesheet" href="js/dhtmlxslider_dhx_skyblue.css">
 <link rel="stylesheet" href="js/dhtmlxslider_dhx_web.css">
@@ -165,7 +166,7 @@ img {
 #applogo #nav{
 	display: none;
 }
-#applogo:hover{
+#applogo:hover, #applogo:focus{
 	background: url('png/show-menu-icon.png');
 	background-size: 48px 48px;
 	background-position: left top;
@@ -266,6 +267,7 @@ img[src*="legend"],img[src*="Legend"],img[src*="thermostat"]{
 <button onclick="showGroups()" style="">Groups</button>
 <button onclick="showScenes()" style="">Shortcuts</button>
 <button onclick="logout()" style="">Logout</button>
+<button onclick="mailResponse()" style="">Debug</button>
 </div></span><h1> Wink Web Control</h1><img id="refreshbutton" src="png/refresh_button.png" alt="Refresh"
 		onclick="loadDeviceArrays()" />
 	</div>

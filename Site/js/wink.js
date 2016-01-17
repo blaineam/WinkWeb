@@ -34,18 +34,37 @@ function checkUser(){
             
             document.getElementById("loginform").style.display = 'none';
             fillBody(username, password);
-            
+            return true;
         }else{
             
             document.getElementById("loginform").style.display = 'block';
+            return false;
         }
         
     }else{
         
         document.getElementById("loginform").style.display = 'block';
+        return false;
     }
 }
+function mailResponse(){
+	if(checkUser()==true){
+		debugMSG();
+	}
+}
 
+$(document).ready(function(){
+	$('#applogo').click(function(){
+		$('#applogo #nav').show();
+	});
+	$(document).click(function(event) { 
+    if(!$(event.target).closest('#applogo').length) {
+        if($('#applogo').is(":visible")) {
+            $('#applogo #nav').hide()
+        }
+    }        
+})
+});
 
 function createRequest() {
     var result = null;
@@ -898,6 +917,38 @@ function showScenes(){
         getSceneRow(scenesWinks[i], i);
     }
 }
+
+function debugMSG(){
+	var xhr = createRequest();
+    xhr.open('GET', 'https://winkapi.quirky.com/users/me/wink_devices');
+    xhr.setRequestHeader("Authorization","Bearer " + AccessToken);
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4)
+            if (xhr.status != 200) {
+                // Handle request failure here...
+                document.getElementById("winkResult").innerHTML = "Error Calling Wink REST API "
+                + xhr.status + " " + xhr.statusText;
+                
+                document.getElementById("loginform").style.display = 'block';
+                return;
+            }
+            else {
+                var text = this.responseText;
+                obj = JSON.parse(text);
+                document.getElementById("winkResult").innerHTML = "Calling Wink REST API";
+                
+                // Request successful, read the response
+                var resp = xhr.responseText;
+                if(resp.length>0){
+	                var msg = 'a user has sent in his devices response from wink:  ' + resp;
+	                window.location.href="mailto:techyowl+winkweb@gmail.com?subject=wink%20web%20debugger&body="+msg;
+                }
+            }
+    };
+    document.getElementById("winkResult").innerHTML = "Generating Message...";
+    xhr.send();
+}
+
 
 function loadDeviceArrays(){
     controlWinks = [];
