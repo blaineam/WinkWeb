@@ -297,6 +297,20 @@ img[src*="legend"],img[src*="Legend"],img[src*="thermostat"]{
 	display: block;
 	position: relative;
 }
+
+#zoomslider{
+	position: fixed;
+	display: block;
+	right: 5px;
+	bottom: 5px;
+	padding: 5px;
+	background: white;
+	border: 1px solid #444444;
+	border-radius: 5px;
+	width: 20px !important;
+	height: auto;
+}
+
 </style>
 <script>
 	</script>
@@ -308,6 +322,7 @@ img[src*="legend"],img[src*="Legend"],img[src*="thermostat"]{
 		<div id="nav">
 <button onclick="showDevices(lightWinks)" style="">Lights</button>
 <button onclick="showDevices(switchWinks)" style="">Switches</button>
+<button onclick="showDevices(slideWinks)" style="">Shades</button>
 <button onclick="showDevices(controlWinks)" style="">Misc</button>
 <button onclick="showDevices(sensorWinks)" style="">Sensors</button>
 <button onclick="showGroups()" style="">Groups</button>
@@ -330,6 +345,6 @@ img[src*="legend"],img[src*="Legend"],img[src*="thermostat"]{
 		<div id="winkDevices">
 		</div>
 	</div>
-
+<div id="zoomslider"></div>
 </body>
 </html>
