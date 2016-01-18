@@ -15,23 +15,22 @@ window.addEventListener('DOMContentLoaded',function(){
 function logout(){
     eraseCookie("username");
     eraseCookie("pass");
-    
+    window.location.reload();
 }
 function loginUser(){
     var username = document.getElementById("username").value;
-    createCookie("username", username, 365);
+    createCookie("username", CryptoJS.AES.encrypt(username, "3kWK*)9=R&GxqmgvWw=GKi824N7J3zojDFJTB=^7&b24rnd.z}").toString(), 365);
     var password = document.getElementById("password").value;
-    createCookie("pass", password, 365);
+    createCookie("pass", CryptoJS.AES.encrypt(password, "3kWK*)9=R&GxqmgvWw=GKi824N7J3zojDFJTB=^7&b24rnd.z}").toString(), 365);
     document.getElementById("loginform").style.display = 'none';
     fillBody(username, password);
 }
 
 function checkUser(){
     if(readCookie('username')){
-        var username = readCookie('username');
+        var username = CryptoJS.AES.decrypt(readCookie('username').toString(), "3kWK*)9=R&GxqmgvWw=GKi824N7J3zojDFJTB=^7&b24rnd.z}").toString(CryptoJS.enc.Utf8);
         if(readCookie('pass')){
-            var	password = readCookie('pass');
-            
+            var	password = CryptoJS.AES.decrypt(readCookie('pass').toString(), "3kWK*)9=R&GxqmgvWw=GKi824N7J3zojDFJTB=^7&b24rnd.z}").toString(CryptoJS.enc.Utf8);
             document.getElementById("loginform").style.display = 'none';
             fillBody(username, password);
             return true;
@@ -55,15 +54,14 @@ function mailResponse(){
 
 $(document).ready(function(){
 	$('#applogo').click(function(){
-		$('#applogo #nav').show();
+		$('#applogo #nav').toggle();
 	});
-	$(document).click(function(event) { 
-    if(!$(event.target).closest('#applogo').length) {
-        if($('#applogo').is(":visible")) {
-            $('#applogo #nav').hide()
-        }
-    }        
-})
+	$(document).on('click', '#nav button', function () {
+$('#applogo #nav').hide();
+	});
+	
+	
+	
 });
 
 function createRequest() {
@@ -171,7 +169,7 @@ function getWinkRow(wink, row) {
             divDesc.style.width = 60;
             divDesc.style.textAlign = 'center';
             var img = document.createElement("img");
-            img.src = "png/lights/light_bulb.png";
+            img.src = "png/switch.png";
             img.width = 48;
             img.height = 48;
             divDesc.appendChild(img);
@@ -200,7 +198,7 @@ function getWinkRow(wink, row) {
             cell.appendChild(lineNext);
             var temp_bg = document.createElement("img");
             temp_bg.style.paddingTop = "5px";
-            temp_bg.src = "png/lights/lightlegend.gif";
+            temp_bg.src = "png/SwitchLegend.png";
             temp_bg.style.align = 'left';
             cell.appendChild(temp_bg);
             mySliderLight[row].attachEvent("onSlideEnd", function(newPower){
@@ -213,6 +211,75 @@ function getWinkRow(wink, row) {
                                            "desired_state":
                                            {
                                            "powered":nPowered
+                                           }
+                                           };
+                                           setDevice(deviceTarget, body);
+                                           //					wink[1].desired_settings.locked = bLocked;
+                                           wink[1].last_reading.powered = nPowered;
+                                           });
+            break;
+            
+        case 'shades':
+            var cell = document.getElementById("State" + row);
+            var state = document.createElement("img");
+            var bPowered = wink[1].last_reading.position;
+            if(bPowered>0){
+	            
+            state.src = "png/lights/true.png";
+            }else{
+	            
+            state.src = "png/lights/false.png";
+            }
+            state.alt = bPowered;
+            cell.appendChild(state);
+            var cell = document.getElementById("Desc" + row);
+            var divDesc = document.createElement('div');
+            divDesc.style.align = 'center';
+            divDesc.style.width = 60;
+            divDesc.style.textAlign = 'center';
+            var img = document.createElement("img");
+            img.src = "png/shades.png";
+            img.width = 48;
+            img.height = 48;
+            divDesc.appendChild(img);
+            divDesc.appendChild(document.createElement("br"));
+            divDesc.appendChild(document.createTextNode(wink[1].name));
+            cell.appendChild(divDesc);
+            var cell = document.getElementById("Switch" + row);
+            cell.style.align = 'center';
+            var wink_id_temp = wink[0] + '_id';
+            var wink_id = wink[1][wink_id_temp];
+            if(wink[1].last_reading.powered)
+                nPowered = 1;
+            else
+                nPowered = 0;
+            mySliderLight[row] = new dhtmlXSlider({
+                                                  parent: cell,
+                                                  size: 100,
+                                                  skin: "dhx_web",
+                                                  tooltip: true,
+                                                  vertical: false,
+                                                  min: 0,
+                                                  max: 1,
+                                                  value: nPowered,
+                                                  step: 0.2});
+            var lineNext = document.createElement("BR");
+            cell.appendChild(lineNext);
+            var temp_bg = document.createElement("img");
+            temp_bg.style.paddingTop = "5px";
+            temp_bg.src = "png/shadelegend.png";
+            temp_bg.style.align = 'left';
+            cell.appendChild(temp_bg);
+            mySliderLight[row].attachEvent("onSlideEnd", function(newPower){
+                                           var deviceTarget = 'shades' + "/" + wink_id;
+                                           if(newPower > 0)
+                                           nPowered = true;
+                                           else
+                                           nPowered = false;
+                                           var body = {
+                                           "desired_state":
+                                           {
+                                           "position":nPowered
                                            }
                                            };
                                            setDevice(deviceTarget, body);
@@ -234,7 +301,7 @@ function getWinkRow(wink, row) {
             divDesc.style.width = 60;
             divDesc.style.textAlign = 'center';
             var img = document.createElement("img");
-            img.src = "png/lights/light_bulb.png";
+            img.src = "png/switch.png";
             img.width = 48;
             img.height = 48;
             divDesc.appendChild(img);
@@ -263,7 +330,7 @@ function getWinkRow(wink, row) {
             cell.appendChild(lineNext);
             var temp_bg = document.createElement("img");
             temp_bg.style.paddingTop = "5px";
-            temp_bg.src = "png/lights/lightlegend.gif";
+            temp_bg.src = "png/SwitchLegend.png";
             temp_bg.style.align = 'left';
             cell.appendChild(temp_bg);
             mySliderLight[row].attachEvent("onSlideEnd", function(newPower){
@@ -521,6 +588,9 @@ function getWinkRow(wink, row) {
              cell.appendChild(divDesc);
              var cell = document.getElementById("Switch" + row);*/
     }
+    if($('span div[id="Switch"]').length==0){
+		$(this).parent().hide();
+	}
     return;
 }
 
@@ -603,19 +673,19 @@ function fillBody(username, password) {
 }
 
 function createRows(row){
-    var result = document.createElement("tr");
-    td = document.createElement("td");
+    var result = document.createElement("span");
+    td = document.createElement("div");
     td.style.width = "10px";
     td.style.align = "center";
     td.id = "State" + row;
     result.appendChild(td);
-    var td = document.createElement("td");
+    var td = document.createElement("div");
     td.style.width = "100px";
     td.style.align = "center";
     td.id = "Desc" + row;
     td.style.fontSize = "10px";
     result.appendChild(td);
-    var td = document.createElement("td");
+    var td = document.createElement("div");
     td.style.width = "160px";
     td.style.align = "left";
     td.id = "Switch" + row;
@@ -625,7 +695,7 @@ function createRows(row){
 }
 
 function updateSensors(wink, row){
-    document.getElementById("winkResult").innerHTML = "Updating Sensor Status...";
+    //document.getElementById("winkResult").innerHTML = "Updating Sensor Status...";
     var cell = document.getElementById("Switch" + row);
     var divSensor = document.createElement('div');
     var imgBattery = document.createElement('img');
@@ -667,8 +737,8 @@ function updateSensors(wink, row){
             imgOpened.src = 'png/sensors/sensors_small_cabinet_closed.png';
     divSensor.appendChild(imgOpened);
     cell.appendChild(divSensor);
-    document.getElementById("winkResult").innerHTML = "Found "
-    + controlWinks.length + " Wink devices"; // + resp;
+    /*document.getElementById("winkResult").innerHTML = "Found "
+    + controlWinks.length + " Wink devices"; // + resp; */
 }
 
 function updateRefuel(wink, row){
@@ -704,16 +774,16 @@ function updateRefuel(wink, row){
     imgRefuel.alt = wink.last_reading.battery;
     divSensor.appendChild(imgRefuel);
     cell.appendChild(divSensor);
-    document.getElementById("winkResult").innerHTML = "Found "
-    + controlWinks.length + " Wink devices"; // + resp;
+    /*document.getElementById("winkResult").innerHTML = "Found "
+    + controlWinks.length + " Wink devices"; // + resp; */
 }
 
 function getGroupRow(wink, row) {
     var cell = document.getElementById("State" + row);
     var state = document.createElement("img");
     bPowered = false;
-    if(wink.reading_aggregation.powered.true_count > 0)
-        bPowered = true;
+    	if(wink.reading_aggregation.powered.true_count > 0)
+        	bPowered = true;
     state.src = "png/lights/" + bPowered + ".png";
     state.alt = bPowered;
     cell.appendChild(state);
@@ -865,7 +935,21 @@ function updateSceneDevices(wink){
  */
 
 function showDevices(device_array){
-    var tbody = document.createElement("tbody");
+	if(device_array==lightWinks){
+		
+    createCookie("deviceshown", "lightWinks", 1);
+	}else if(device_array==controlWinks){
+		
+    createCookie("deviceshown", "controlWinks", 1);
+	}else if(device_array==sensorWinks){
+		
+    createCookie("deviceshown", "sensorWinks", 1);
+	}else if(device_array==switchWinks){
+		
+    createCookie("deviceshown", "switchWinks", 1);
+	}
+	
+    var tbody = document.createElement("div");
     for (var i = 0; i < device_array.length; i++) {
         tbody.appendChild(createRows(i));
     }
@@ -886,7 +970,9 @@ function showDevices(device_array){
 }
 
 function showGroups(){
-    var tbody = document.createElement("tbody");
+	
+    createCookie("deviceshown", "groupsWinks", 1);
+    var tbody = document.createElement("div");
     for (var i = 0; i < groupsWinks.length; i++) {
         tbody.appendChild(createRows(i));
     }
@@ -906,7 +992,9 @@ function showGroups(){
 }
 
 function showScenes(){
-    var tbody = document.createElement("tbody");
+	
+    createCookie("deviceshown", "scenesWinks", 1);
+    var tbody = document.createElement("div");
     for (var i = 0; i < scenesWinks.length; i++) {
         tbody.appendChild(createRows(i));
     }
@@ -977,6 +1065,12 @@ function loadDeviceArrays(){
                 
                 // Request successful, read the response
                 var resp = xhr.responseText;
+                /*var tresp = prompt("Enter optional JSON", "");
+                if(tresp){
+	                resp = tresp;
+                }
+                */
+                
                 // ... and use it as needed by your app.
                 var winks = JSON.parse(resp);
                 device_type = "";
@@ -987,6 +1081,10 @@ function loadDeviceArrays(){
                             switchWinks.push(["outlet", winks.data[i].outlets[1]]);
                             break;
                             
+                        }
+                        else if(Object.keys(winks.data[i])[j - 2] == 'sensor_pod_id' && Object.keys(winks.data[i])[j] == 'name'){
+	                        var device_type = Object.keys(winks.data[i])[j - 2];
+                            break;
                         }
                         else if(Object.keys(winks.data[i])[j - 1] != 'powerstrip_id' && Object.keys(winks.data[i])[j] == 'name'){
                             var device_type = Object.keys(winks.data[i])[j - 1];
@@ -1003,15 +1101,24 @@ function loadDeviceArrays(){
                                 switchWinks.push([device_type_short, winks.data[i]]);
                                 break;
                                 
+                            case 'shade_id':  //Array for switches
+                                switchWinks.push([device_type_short, winks.data[i]]);
+                                break;
+                                
                             case 'outlet_id':  //Array for switches
                                 break;
-                            case 'sensor_pod_id':  //Array for various sensors
+                            case 'sensor_pod_id':
+                            	
+                                sensorWinks.push([device_type_short, winks.data[i]]);
+                            	break;
                             case 'smoke_detector_id':
                             case 'propane_tank_id':
                                 sensorWinks.push([device_type_short, winks.data[i]]);
                                 break;
                             default:  //Array for devices that don't fall into other spaces that can be controlled
-                                controlWinks.push([device_type_short, winks.data[i]]);
+                                if(device_type_short=="lock"||device_type_short=="sensor_pod"||device_type_short=="thermostat"){
+	                                controlWinks.push([device_type_short, winks.data[i]]);
+                                }
                                 break;
                         }
                     }
@@ -1043,11 +1150,16 @@ function loadGroupArray(){
                 
                 // Request successful, read the response
                 var resp = xhr.responseText;
+                
                 // ... and use it as needed by your app.
                 var winks = JSON.parse(resp);
                 for (var i = 0; i < winks.data.length; i++) {
-                    groupsWinks.push(winks.data[i]);
+	                
+					if(!$.isEmptyObject(winks.data[i].reading_agregation)){
+                    	groupsWinks.push(winks.data[i]);
+                    }
                 }
+                
                 document.getElementById("winkResult").innerHTML = "Found "
                 + groupsWinks.length + " Wink groups"; // + resp;
                 var winkTable = document.getElementById("winkTable");
@@ -1085,7 +1197,28 @@ function loadSceneArray(){
                 }
                 document.getElementById("winkResult").innerHTML = "";
                 var winkTable = document.getElementById("winkTable");
+                if(!$.isEmptyObject(readCookie('deviceshown')) && readCookie('deviceshown')!="lightWinks"){
+	                if(readCookie('deviceshown')=="switchWinks"){
+		                
+	                showDevices(switchWinks);
+	                }else if(readCookie('deviceshown')=="controlWinks"){
+		                
+	                showDevices(controlWinks);
+	                }else if(readCookie('deviceshown')=="sensorWinks"){
+		                
+	                showDevices(sensorWinks);
+	                }else if(readCookie('deviceshown')=="scenesWinks"){
+		                
+	                showScenes();
+	                }else if(readCookie('deviceshown')=="groupsWinks"){
+		                
+	                showGroups();
+	                }
+
+                }else{
+	                
                 showDevices(lightWinks);
+                }
             }
     };
     document.getElementById("winkResult").innerHTML = "Loading Shortcuts...";
@@ -1108,12 +1241,15 @@ function setDevice(deviceTarget, body) {
         }
         // Request successful, read the response
         var resp = xhr.responseText;
-        document.getElementById("winkResult").innerHTML = "Seting Device State";
+        document.getElementById("winkResult").innerHTML = "Setting Device State";
+        
+    loadDeviceArrays();
     }
     xhr.open("PUT", 'https://winkapi.quirky.com/' + deviceTarget);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization","Bearer " + AccessToken);
     xhr.send(JSON.stringify(body));
+    
 }
 
 function setScene(sceneTarget) {
@@ -1130,12 +1266,13 @@ function setScene(sceneTarget) {
         }
         // Request successful, read the response
         var resp = xhr.responseText;
-        document.getElementById("winkResult").innerHTML = "Seting Device State";
+        document.getElementById("winkResult").innerHTML = "Setting Device State";
     }
     xhr.open("POST", 'https://winkapi.quirky.com/' + sceneTarget);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization","Bearer " + AccessToken);
     xhr.send(null);
+    loadSceneArray();
 }
 
 function setGroup(groupTarget, body) {
@@ -1152,10 +1289,11 @@ function setGroup(groupTarget, body) {
         }
         // Request successful, read the response
         var resp = xhr.responseText;
-        document.getElementById("winkResult").innerHTML = "Seting Device State";
+        document.getElementById("winkResult").innerHTML = "Setting Device State";
     }
     xhr.open("POST", 'https://winkapi.quirky.com/' + groupTarget);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization","Bearer " + AccessToken);
     xhr.send(JSON.stringify(body));
+    loadGroupArray();
 }

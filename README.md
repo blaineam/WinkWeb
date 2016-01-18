@@ -11,7 +11,7 @@ Wink web also comes bundled with an xcode project and a Mac OS X 10.11 or El Cap
 > this app used some of the resorces of [william Beam on Google Plus](https://plus.google.com/+WilliamBeam) and [taichino on github](https://github.com/taichino/PopupTest) to build
 
 ### Version
-1.0
+1.1
 
 ### Installation of Web Interface
 
@@ -31,6 +31,10 @@ upload contents of Site to your webhost via ftp and then access it in the web fr
 8. after successfully signed on you can start using the wink web portal any time from your mac
 > this app maintains the login credentials in a local cookie on your mac your login credentials are never shared with any third party. heck I won't ever know them either nor do i care to.
 
+
+
+### Live Demo
+[Wink Web Live Demo](https://wink.blainemiller.xyz)
 
 
 ### Development
