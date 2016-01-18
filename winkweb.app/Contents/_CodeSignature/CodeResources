@@ -46,7 +46,7 @@
 		</data>
 		<key>Resources/AppIcon.icns</key>
 		<data>
-		kfPkvzfEnAXadDQ8Uuzbicrdgz4=
+		4rqOPeYOKBHXj68CCTeiEI8WRVA=
 		</data>
 		<key>Resources/Base.lproj/MainMenu.nib</key>
 		<dict>
@@ -65,13 +65,13 @@
 		<data>
 		vmqi1IohUNTbLRGuHQGLOqC0fas=
 		</data>
-		<key>Resources/archived-expanded-entitlements.xcent</key>
-		<data>
-		kZGzZA4p4iwwC9v0ofm/9twZk+0=
-		</data>
 		<key>Resources/index.html</key>
 		<data>
-		xJAGRu6YQ1lLlyA757KI2W34Kfc=
+		DFI8MsJw04yj7LhwSpoRlz2xYAE=
+		</data>
+		<key>Resources/js/aes.js</key>
+		<data>
+		d+RRmWLi9qn8kzQhN9uzHDO3awQ=
 		</data>
 		<key>Resources/js/dhtmlxslider.css</key>
 		<data>
@@ -93,9 +93,13 @@
 		<data>
 		bEZQrSp4glyIvnbq+BkSgu/hTEQ=
 		</data>
+		<key>Resources/js/jquery-2.1.4.min.js</key>
+		<data>
+		Q9xVRgjfiFpZ3e7OFZjGrOQ010c=
+		</data>
 		<key>Resources/js/wink.js</key>
 		<data>
-		m47KUu/nyTpKshhgG1uPeI65DiM=
+		uR9ksEuAkH586DoDzYq+yk0sM3c=
 		</data>
 		<key>Resources/png/1024.png</key>
 		<data>
@@ -124,6 +128,10 @@
 		<key>Resources/png/MB__reload.png</key>
 		<data>
 		Z5uwWkm7cetH6wNoqsVdjbBx/u4=
+		</data>
+		<key>Resources/png/SwitchLegend.png</key>
+		<data>
+		hN6AJmQhO6hwfGhExySiYiMEj7U=
 		</data>
 		<key>Resources/png/Thumbs.db</key>
 		<data>
@@ -188,6 +196,10 @@
 		<key>Resources/png/lights/na.png</key>
 		<data>
 		ElVTipsG8OeBtrrFcagnJY+QbsQ=
+		</data>
+		<key>Resources/png/lights/null.png</key>
+		<data>
+		zkkmW9IKlN/4s9lFWcZamvrdK/E=
 		</data>
 		<key>Resources/png/lights/true.png</key>
 		<data>
@@ -357,9 +369,21 @@
 		<data>
 		5xQk5a1hZEhKJhEHfyABSgNXX6k=
 		</data>
+		<key>Resources/png/shadelegend.png</key>
+		<data>
+		n0vqBZWtdmlvoCfn44Vs80hU504=
+		</data>
+		<key>Resources/png/shades.png</key>
+		<data>
+		+2TMZUVb59ZSnLrEJ2bS+O0fqvM=
+		</data>
 		<key>Resources/png/show-menu-icon.png</key>
 		<data>
 		ClFNUgPioxxY5biyvCW6SMj56Qc=
+		</data>
+		<key>Resources/png/switch.png</key>
+		<data>
+		JpwckVC8PhT6ERn8VL8LiHyVhAk=
 		</data>
 		<key>Resources/png/thermostat/Thumbs.db</key>
 		<data>
@@ -508,7 +532,7 @@
 		</data>
 		<key>Resources/AppIcon.icns</key>
 		<data>
-		kfPkvzfEnAXadDQ8Uuzbicrdgz4=
+		4rqOPeYOKBHXj68CCTeiEI8WRVA=
 		</data>
 		<key>Resources/Base.lproj/MainMenu.nib</key>
 		<dict>
@@ -527,13 +551,13 @@
 		<data>
 		vmqi1IohUNTbLRGuHQGLOqC0fas=
 		</data>
-		<key>Resources/archived-expanded-entitlements.xcent</key>
-		<data>
-		kZGzZA4p4iwwC9v0ofm/9twZk+0=
-		</data>
 		<key>Resources/index.html</key>
 		<data>
-		xJAGRu6YQ1lLlyA757KI2W34Kfc=
+		DFI8MsJw04yj7LhwSpoRlz2xYAE=
+		</data>
+		<key>Resources/js/aes.js</key>
+		<data>
+		d+RRmWLi9qn8kzQhN9uzHDO3awQ=
 		</data>
 		<key>Resources/js/dhtmlxslider.css</key>
 		<data>
@@ -555,9 +579,13 @@
 		<data>
 		bEZQrSp4glyIvnbq+BkSgu/hTEQ=
 		</data>
+		<key>Resources/js/jquery-2.1.4.min.js</key>
+		<data>
+		Q9xVRgjfiFpZ3e7OFZjGrOQ010c=
+		</data>
 		<key>Resources/js/wink.js</key>
 		<data>
-		m47KUu/nyTpKshhgG1uPeI65DiM=
+		uR9ksEuAkH586DoDzYq+yk0sM3c=
 		</data>
 		<key>Resources/png/1024.png</key>
 		<data>
@@ -586,6 +614,10 @@
 		<key>Resources/png/MB__reload.png</key>
 		<data>
 		Z5uwWkm7cetH6wNoqsVdjbBx/u4=
+		</data>
+		<key>Resources/png/SwitchLegend.png</key>
+		<data>
+		hN6AJmQhO6hwfGhExySiYiMEj7U=
 		</data>
 		<key>Resources/png/Thumbs.db</key>
 		<data>
@@ -650,6 +682,10 @@
 		<key>Resources/png/lights/na.png</key>
 		<data>
 		ElVTipsG8OeBtrrFcagnJY+QbsQ=
+		</data>
+		<key>Resources/png/lights/null.png</key>
+		<data>
+		zkkmW9IKlN/4s9lFWcZamvrdK/E=
 		</data>
 		<key>Resources/png/lights/true.png</key>
 		<data>
@@ -819,9 +855,21 @@
 		<data>
 		5xQk5a1hZEhKJhEHfyABSgNXX6k=
 		</data>
+		<key>Resources/png/shadelegend.png</key>
+		<data>
+		n0vqBZWtdmlvoCfn44Vs80hU504=
+		</data>
+		<key>Resources/png/shades.png</key>
+		<data>
+		+2TMZUVb59ZSnLrEJ2bS+O0fqvM=
+		</data>
 		<key>Resources/png/show-menu-icon.png</key>
 		<data>
 		ClFNUgPioxxY5biyvCW6SMj56Qc=
+		</data>
+		<key>Resources/png/switch.png</key>
+		<data>
+		JpwckVC8PhT6ERn8VL8LiHyVhAk=
 		</data>
 		<key>Resources/png/thermostat/Thumbs.db</key>
 		<data>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="js/aes.js"></script>
 <script src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/wink.js"></script>
 <script type="text/javascript" src="js/dhtmlxslider.js"></script>
@@ -165,14 +166,14 @@ img {
 }
 #applogo #nav{
 	display: none;
+	height: calc(100vh - 48px) !important;
+	overflow-y: scroll;
+	background-color: #444444;
 }
 #applogo:hover, #applogo:focus{
 	background: url('png/show-menu-icon.png');
 	background-size: 48px 48px;
 	background-position: left top;
-}
-#applogo:hover #nav{
-	display: block;
 }
 #header h1 {
     display: inline-block;
@@ -192,33 +193,78 @@ img {
     width: 40px;
 }
 #winkTable {
-    width: 80%;
-    margin-left: 10%;
+    width: 95%;
+    margin-left: 2.5%;
 }
-#winkTable tr {
+
+#winktable > div, #winkDevices, #winkDevicesScenes{
+	text-align: center;
+}
+
+#winkTable span {
     margin-bottom: 10px;
     position: relative;
     width: 100%;
     line-height: 20px;
     text-align: center;
 }
-
-tr < td:empty {
-	display: none;
+#winkTable span{
+	width: auto;
+	margin: 10px;
+	border: 2px Solid #444444;
+	border-radius: 10px;
+	position: relative;
+	display: inline-block;
+}
+#winkTable span > div{
+	display: inline-block;
+	position: relative;
+width: auto !important;
+padding: 10px;
+	vertical-align: middle;
+	text-align: center;
 }
 
-#winkDevicesScenes tr {
+#winkDevicesScenes span{
     display: inline-block;
     width: 50px;
     height: 50px;
-    padding: 50px;
+    padding: 40px;
     margin: 10px;
     border: 5px solid #444444;
     border-radius: 200px;
+    text-align: center;
+vertical-align: middle;
 }
+
+#winkDevicesScenes div[id*="Desc"] {
+    padding: 0px;
+    margin: 0px;
+}
+
+#winkDevicesScenes div[id*="State"], #winkDevicesScenes div[id*="Switch"]{
+	width: 0px !important;
+	height: 0px !important;
+	padding: 0px !important;
+	display: none !important;
+}
+
+ span < div:empty {
+	display: none !important;
+}
+
 img[src*="legend"],img[src*="Legend"],img[src*="thermostat"]{
 	display: block !important;
 }
+
+.dhxsl_cont_hr + img {
+    display: block !important;
+    position: relative;
+    padding-top: 5px !important;
+    float: left;
+    clear: left;
+}
+
 .dhtmlxslider_dhx_web {
     width: 33% !important;
 }
@@ -280,13 +326,10 @@ img[src*="legend"],img[src*="Legend"],img[src*="thermostat"]{
 		<button id="loginbutton" onclick="loginUser()">Login</button>
 	</div>
 
-	<table id="winkTable">
-		<tbody id="winkDevices">
-			<tr>
-				<td></td>
-			</tr>
-		</tbody>
-	</table>
+	<div id="winkTable">
+		<div id="winkDevices">
+		</div>
+	</div>
 
 </body>
 </html>
