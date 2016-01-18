@@ -5,6 +5,7 @@ var controlWinks = [];
 var	lightWinks = [];
 var	switchWinks = [];
 var	sensorWinks = [];
+var	slideWinks = [];
 var scenesWinks = [];
 var groupsWinks = [];
 
@@ -51,7 +52,9 @@ function mailResponse(){
 		debugMSG();
 	}
 }
-
+$(window).load(function(){
+	
+});
 $(document).ready(function(){
 	$('#applogo').click(function(){
 		$('#applogo #nav').toggle();
@@ -59,8 +62,35 @@ $(document).ready(function(){
 	$(document).on('click', '#nav button', function () {
 $('#applogo #nav').hide();
 	});
+	if(readCookie("zoom")==null){
+		createCookie("zoom",1,365);
+	}
 	
 	
+	
+	
+            var cell = document.getElementById("zoomslider");
+	zoomslider = new dhtmlXSlider({
+                                                  parent: cell,
+                                                  size: 100,
+                                                  skin: "dhx_web",
+                                                  tooltip: true,
+                                                  vertical: true,
+                                                  min: 1,
+                                                  max: 3,
+                                                  value: readCookie("zoom"),
+                                                  step: 0.1});
+                                                  
+                                                  
+                                                  zoomslider.attachEvent("onSlideEnd", function(izoom){
+												  
+												  createCookie("zoom",izoom,365);
+												  $('#winkTable span').css({zoom: izoom});
+                                               });
+                                                  
+                                                  
+                                                  
+
 	
 });
 
@@ -272,14 +302,79 @@ function getWinkRow(wink, row) {
             cell.appendChild(temp_bg);
             mySliderLight[row].attachEvent("onSlideEnd", function(newPower){
                                            var deviceTarget = 'shades' + "/" + wink_id;
-                                           if(newPower > 0)
-                                           nPowered = true;
-                                           else
-                                           nPowered = false;
+                                           
+                                           nPowered = newPower;
                                            var body = {
                                            "desired_state":
                                            {
-                                           "position":nPowered
+                                           "position":newPower
+                                           }
+                                           };
+                                           setDevice(deviceTarget, body);
+                                           //					wink[1].desired_settings.locked = bLocked;
+                                           wink[1].last_reading.powered = nPowered;
+                                           });
+            break;
+            
+        case 'garage_doors':
+            var cell = document.getElementById("State" + row);
+            var state = document.createElement("img");
+            var bPowered = wink[1].last_reading.position;
+            if(bPowered>0){
+	            
+            state.src = "png/lights/true.png";
+            }else{
+	            
+            state.src = "png/lights/false.png";
+            }
+            state.alt = bPowered;
+            cell.appendChild(state);
+            var cell = document.getElementById("Desc" + row);
+            var divDesc = document.createElement('div');
+            divDesc.style.align = 'center';
+            divDesc.style.width = 60;
+            divDesc.style.textAlign = 'center';
+            var img = document.createElement("img");
+            img.src = "png/shades.png";
+            img.width = 48;
+            img.height = 48;
+            divDesc.appendChild(img);
+            divDesc.appendChild(document.createElement("br"));
+            divDesc.appendChild(document.createTextNode(wink[1].name));
+            cell.appendChild(divDesc);
+            var cell = document.getElementById("Switch" + row);
+            cell.style.align = 'center';
+            var wink_id_temp = wink[0] + '_id';
+            var wink_id = wink[1][wink_id_temp];
+            if(wink[1].last_reading.powered)
+                nPowered = 1;
+            else
+                nPowered = 0;
+            mySliderLight[row] = new dhtmlXSlider({
+                                                  parent: cell,
+                                                  size: 100,
+                                                  skin: "dhx_web",
+                                                  tooltip: true,
+                                                  vertical: false,
+                                                  min: 0,
+                                                  max: 1,
+                                                  value: nPowered,
+                                                  step: 1});
+            var lineNext = document.createElement("BR");
+            cell.appendChild(lineNext);
+            var temp_bg = document.createElement("img");
+            temp_bg.style.paddingTop = "5px";
+            temp_bg.src = "png/shadelegend.png";
+            temp_bg.style.align = 'left';
+            cell.appendChild(temp_bg);
+            mySliderLight[row].attachEvent("onSlideEnd", function(newPower){
+                                           var deviceTarget = 'shades' + "/" + wink_id;
+                                           
+                                           nPowered = newPower;
+                                           var body = {
+                                           "desired_state":
+                                           {
+                                           "position":newPower
                                            }
                                            };
                                            setDevice(deviceTarget, body);
@@ -591,6 +686,8 @@ function getWinkRow(wink, row) {
     if($('span div[id="Switch"]').length==0){
 		$(this).parent().hide();
 	}
+	
+	
     return;
 }
 
@@ -803,17 +900,33 @@ function getGroupRow(wink, row) {
     var cell = document.getElementById("Switch" + row);
     cell.style.width = "160px";
     var wink_id = wink.group_id;
-    if(wink.reading_aggregation.powered.or)
-        nLight[row] = (wink.reading_aggregation.brightness.average) * 100;
-    else
-        nLight[row] = 0;
+    var steps = 10;
+    var ssize = 150;
+    var llegend = "png/lights/lightlegend.gif";
+    if($.type(wink.reading_aggregation.brightness) === "undefined"){
+	    steps = 100;
+	    ssize = 100;
+	    llegend = "png/SwitchLegend.png";
+	    if(wink.reading_aggregation.powered.or)
+	    	nLight[row] = 100;
+	    else
+        	nLight[row] = 0;
+    }else{
+	    steps = 10;
+	    ssize = 150;if(wink.reading_aggregation.powered.or)
+	    	nLight[row] = wink.reading_aggregation.brightness.average * 100;
+	    else
+        	nLight[row] = 0;
+	    llegend = "png/lights/lightlegend.gif";
+    }
+    
     mySliderLight[row] = new dhtmlXSlider({
                                           parent: "Switch" + row,
                                           value: nLight[row],
                                           tooltip: true,
                                           skin: "dhx_web",
-                                          size: 150,
-                                          step: 10,
+                                          size: ssize,
+                                          step: steps,
                                           min: 0,
                                           max: 100
                                           });
@@ -821,7 +934,7 @@ function getGroupRow(wink, row) {
     var lineNext = document.createElement("BR");
     cell.appendChild(lineNext);
     var temp_bg = document.createElement("img");
-    temp_bg.src = "png/lights/lightlegend.gif";
+    temp_bg.src = llegend;
     temp_bg.style.paddingTop = "5px";
     temp_bg.style.align = "left";
     cell.appendChild(temp_bg);
@@ -833,18 +946,39 @@ function getGroupRow(wink, row) {
                                        else
                                        bPowered = false;
                                        value = newLight/100;
-                                       var body = {
+                                       
+									   if($.type(wink.reading_aggregation.brightness) === "undefined"){
+										    var body = {
+                                       "desired_state":
+                                       {
+                                       "powered":bPowered
+                                       }
+                                       };
+                                       
+                                        setGroup(deviceTarget, body);
+                                       //			wink[1].desired_state.powered = bPowered;
+                                       //			wink[1].desired_state.brightness = value;
+                                       wink.reading_aggregation.powered.or = bPowered;
+                                       updateGroupDevices(wink, value);
+                                       
+										   }else{
+											  var body = {
                                        "desired_state":
                                        {
                                        "powered":bPowered,"brightness":value
                                        }
-                                       };
+                                       };  
+                                       
                                        setGroup(deviceTarget, body);
                                        //			wink[1].desired_state.powered = bPowered;
                                        //			wink[1].desired_state.brightness = value;
                                        wink.reading_aggregation.powered.or = bPowered;
                                        wink.reading_aggregation.brightness.average = value;
                                        updateGroupDevices(wink, value);
+										   }
+                                       
+                                      
+                                      
                                        });
 }
 
@@ -947,6 +1081,9 @@ function showDevices(device_array){
 	}else if(device_array==switchWinks){
 		
     createCookie("deviceshown", "switchWinks", 1);
+	}else if(device_array==slideWinks){
+		
+    createCookie("deviceshown", "slideWinks", 1);
 	}
 	
     var tbody = document.createElement("div");
@@ -967,6 +1104,8 @@ function showDevices(device_array){
         getWinkRow(device_array[i], i);
     }
     
+		var izoom = readCookie("zoom");
+		$('#winkTable span').css({zoom: izoom});
 }
 
 function showGroups(){
@@ -989,6 +1128,9 @@ function showGroups(){
     for (var i = 0; i < groupsWinks.length; i++) {
         getGroupRow(groupsWinks[i], i);
     }
+    
+		var izoom = readCookie("zoom");
+		$('#winkTable span').css({zoom: izoom});
 }
 
 function showScenes(){
@@ -998,12 +1140,21 @@ function showScenes(){
     for (var i = 0; i < scenesWinks.length; i++) {
         tbody.appendChild(createRows(i));
     }
-    var winkTable = document.getElementById("winkTable");
-    winkTable.replaceChild(tbody, document.getElementById("winkDevices"));
+    var winkTable = document.getElementById("winkTable"); try {
+        
+        winkTable.replaceChild(tbody, document.getElementById("winkDevices"));
+    }
+    catch (e) {
+        
+        winkTable.replaceChild(tbody, document.getElementById("winkDevicesScenes"));
+    }
     tbody.setAttribute("id", "winkDevicesScenes");
     for (var i = 0; i < scenesWinks.length; i++) {
         getSceneRow(scenesWinks[i], i);
     }
+    
+		var izoom = readCookie("zoom");
+		$('#winkTable span').css({zoom: izoom});
 }
 
 function debugMSG(){
@@ -1028,8 +1179,15 @@ function debugMSG(){
                 // Request successful, read the response
                 var resp = xhr.responseText;
                 if(resp.length>0){
+	                
+	                if(confirm("email developer debug code")){
+		                
 	                var msg = 'a user has sent in his devices response from wink:  ' + resp;
 	                window.location.href="mailto:techyowl+winkweb@gmail.com?subject=wink%20web%20debugger&body="+msg;
+	                }else if(confirm("Input Developer Code?")){
+		                window.devresp = prompt("Enter the Json Code Here", "");
+		                loadDeviceArrays();
+	                }
                 }
             }
     };
@@ -1042,6 +1200,7 @@ function loadDeviceArrays(){
     controlWinks = [];
     lightWinks = [];
     switchWinks = [];
+    slideWinks = [];
     sensorWinks = [];
     scenesWinks = [];
     groupsWinks = [];
@@ -1065,11 +1224,9 @@ function loadDeviceArrays(){
                 
                 // Request successful, read the response
                 var resp = xhr.responseText;
-                /*var tresp = prompt("Enter optional JSON", "");
-                if(tresp){
-	                resp = tresp;
+                if(window.devresp){
+	                resp = window.devresp;
                 }
-                */
                 
                 // ... and use it as needed by your app.
                 var winks = JSON.parse(resp);
@@ -1102,10 +1259,14 @@ function loadDeviceArrays(){
                                 break;
                                 
                             case 'shade_id':  //Array for switches
-                                switchWinks.push([device_type_short, winks.data[i]]);
+                                slideWinks.push([device_type_short, winks.data[i]]);
                                 break;
                                 
                             case 'outlet_id':  //Array for switches
+                                break;
+                            case 'garage_door_id':
+                            	
+                                slideWinks.push([device_type_short, winks.data[i]]);
                                 break;
                             case 'sensor_pod_id':
                             	
@@ -1132,6 +1293,7 @@ function loadDeviceArrays(){
 }
 
 function loadGroupArray(){
+	groupsWinks = [];
     var xhr = createRequest();
     xhr.open('GET', 'https://winkapi.quirky.com/users/me/groups');
     xhr.setRequestHeader("Authorization","Bearer " + AccessToken);
@@ -1154,8 +1316,8 @@ function loadGroupArray(){
                 // ... and use it as needed by your app.
                 var winks = JSON.parse(resp);
                 for (var i = 0; i < winks.data.length; i++) {
-	                
-					if(!$.isEmptyObject(winks.data[i].reading_agregation)){
+	                //console.log(winks.data[i].reading_aggregation);
+					if(!$.isEmptyObject(winks.data[i].reading_aggregation)){
                     	groupsWinks.push(winks.data[i]);
                     }
                 }
@@ -1171,6 +1333,7 @@ function loadGroupArray(){
 }
 
 function loadSceneArray(){
+	scenesWinks = [];
     var xhr = createRequest();
     xhr.open('GET', 'https://winkapi.quirky.com/users/me/scenes');
     xhr.setRequestHeader("Authorization","Bearer " + AccessToken);
@@ -1213,6 +1376,9 @@ function loadSceneArray(){
 	                }else if(readCookie('deviceshown')=="groupsWinks"){
 		                
 	                showGroups();
+	                }else if(readCookie('deviceshown')=="slideWinks"){
+		                
+	                showDevices(slideWinks);
 	                }
 
                 }else{
