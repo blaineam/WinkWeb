@@ -11,10 +11,10 @@ Wink web also comes bundled with an xcode project and a Mac OS X 10.11 or El Cap
 > this app used some of the resorces of [william Beam on Google Plus](https://plus.google.com/+WilliamBeam) and [taichino on github](https://github.com/taichino/PopupTest) to build
 
 ### Version
-1.3
+1.4
 
 ### New in this Version
-Improved responsiveness of interface and the word wrapping to make device blocks more uniformed. fixed issues relating to thermostat interface and controls
+Improved responsiveness of interface and the word wrapping to make device blocks more uniformed. fixed issues relating to thermostat interface and controls (1.4 adds various bug fixes)
 
 ### Support Wink Devices
 
