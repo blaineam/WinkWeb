@@ -11,14 +11,14 @@ Wink web also comes bundled with an xcode project and a Mac OS X 10.11 or El Cap
 > this app used some of the resorces of [william Beam on Google Plus](https://plus.google.com/+WilliamBeam) and [taichino on github](https://github.com/taichino/PopupTest) to build
 
 ### Version
-1.4
+1.5
 
 ### New in this Version
-Improved responsiveness of interface and the word wrapping to make device blocks more uniformed. fixed issues relating to thermostat interface and controls (1.4 adds various bug fixes)
+Added settings tab for controlling show/hide the zoom slider, temperature units from F to C and visa versa, Setting of custom encryption key for added security(still the best security is to just protect access to your actual computer since everything is stored locally on there), added support for color light bulbs. updated the wink app to have the necessary dependencies bundled inside it.
 
 ### Support Wink Devices
 
-  - Smart Light Bulbs (dimming where available)
+  - Smart Light Bulbs (dimming and color changing where available)
   - Binary Switches (Including Wink Relay and Other Z-Wave/Smart Switches)
   - Smart Outlets (Including Pivot Power Geniuses and Outlink adapters to name a few)
   - Thermostats

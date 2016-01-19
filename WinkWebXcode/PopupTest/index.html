@@ -5,326 +5,354 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
                 <script src="js/aes.js"></script>
                 <script src="js/jquery-2.1.4.min.js"></script>
+                <script src="js/spectrum.js"></script>
+                <script src="js/tinycolor.js"></script>
                 <script type="text/javascript" src="js/wink.js"></script>
                 <script type="text/javascript" src="js/dhtmlxslider.js"></script>
                 <link rel="stylesheet" href="js/dhtmlxslider_dhx_skyblue.css">
                     <link rel="stylesheet" href="js/dhtmlxslider_dhx_web.css">
-                        
-                        <style>
-                            /*
-                             html5doctor.com Reset Stylesheet
-                             v1.6.1
-                             Last Updated: 2010-09-17
-                             Author: Richard Clark - http://richclarkdesign.com
-                             Twitter: @rich_clark
-                             */
-                        
-                        html, body, div, span, object, iframe,
-                        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-                        abbr, address, cite, code,
-                        del, dfn, em, img, ins, kbd, q, samp,
-                        small, strong, sub, sup, var,
-                        b, i,
-                        dl, dt, dd, ol, ul, li,
-                        fieldset, form, label, legend,
-                        table, caption, tbody, tfoot, thead, tr, th, td,
-                        article, aside, canvas, details, figcaption, figure,
-                        footer, header, hgroup, menu, nav, section, summary,
-                        time, mark, audio, video {
-                            margin:0;
-                            padding:0;
-                            border:0;
-                            outline:0;
-                            font-size:100%;
-                            vertical-align:baseline;
-                            background:transparent;
-                        }
-                        
-                        body {
-                            line-height:1;
-                            padding-top: 50px;
-                        }
-                        
-                        article,aside,details,figcaption,figure,
-                        footer,header,hgroup,menu,nav,section {
-                            display:block;
-                        }
-                        
-                        nav ul {
-                            list-style:none;
-                        }
-                        
-                        blockquote, q {
-                            quotes:none;
-                        }
-                        
-                        blockquote:before, blockquote:after,
-                        q:before, q:after {
-                            content:'';
-                            content:none;
-                        }
-                        
-                        a {
-                            margin:0;
-                            padding:0;
-                            font-size:100%;
-                            vertical-align:baseline;
-                            background:transparent;
-                        }
-                        
-                        /* change colours to suit your needs */
-                        ins {
-                            background-color:#ff9;
-                            color:#000;
-                            text-decoration:none;
-                        }
-                        
-                        /* change colours to suit your needs */
-                        mark {
-                            background-color:#ff9;
-                            color:#000;
-                            font-style:italic;
-                            font-weight:bold;
-                        }
-                        
-                        del {
-                            text-decoration: line-through;
-                        }
-                        
-                        abbr[title], dfn[title] {
-                            border-bottom:1px dotted;
-                            cursor:help;
-                        }
-                        
-                        table {
-                            border-collapse:collapse;
-                            border-spacing:0;
-                        }
-                        
-                        /* change border colour to suit your needs */
-                        hr {
-                            display:block;
-                            height:1px;
-                            border:0;
-                            border-top:1px solid #cccccc;
-                            margin:1em 0;
-                            padding:0;
-                        }
-                        
-                        input, select {
-                            vertical-align:middle;
-                        }
-                        
-                        
-                        
-                        
-                        th,td {
-                            padding: 0px;
-                        }
-                        title {
-                            padding-top: 0px;
-                        }
-                        
-                        img {
-                            vertical-align: middle;
-                        }
-                        #header{
-                            width: 100%;
-                            background: #444444;
-                            height: 48px;
-                            position: fixed;
-                            top: 0px;
-                            left: 0px;
-                            z-index: 100;
-                        }
-                        
-                        #nav{
-                            display: none;
-                            position: fixed;
-                            top:48px;
-                            left: 0px;
-                            width: 200px;
-                        }
-                        #nav button{
-                            width: 200px;
-                            height: 40px;
-                            font-size: 25px;
-                            text-align: center;
-                            border-radius: 0px;
-                            background: #444444;
-                            color: white;
-                            border: 0px solid transparent;
-                        }
-                        #applogo{
-                            background:url('png/ic_device_wink_add.png');
-                            background-size: 48px 48px;
-                            background-position: left top;
-                            width: 48px;
-                            min-height: 48px;
-                            display: inline-block;
-                            position: relative;
-                        }
-                        #applogo #nav{
-                            display: none;
-                            height: calc(100vh - 48px) !important;
-                            overflow-y: scroll;
-                            background-color: #444444;
-                        }
-                        #applogo:hover, #applogo:focus{
-                            background: url('png/show-menu-icon.png');
-                            background-size: 48px 48px;
-                            background-position: left top;
-                        }
-                        #header h1 {
-                            display: inline-block;
-                            color: white;
-                            width: calc(100% - 96px);
-                            text-align: center;
-                            vertical-align: middle;
-                            position: relative;
-                            margin-top: -37px;
-                            font-family: sans-serif;
-                            font-weight: 100;
-                            font-size: 30px;
-                        }
-                        #refreshbutton {
-                            margin-top: -40px;
-                            content: url('png/MB__reload.png');
-                            width: 40px;
-                        }
-                        #winkTable {
-                            width: 95%;
-                            margin-left: 2.5%;
-                        }
-                        
-                        #winktable > div, #winkDevices, #winkDevicesScenes{
-                            text-align: center;
-                        }
-                        
-                        #winkTable span {
-                            margin-bottom: 10px;
-                            position: relative;
-                            width: 100%;
-                            line-height: 20px;
-                            text-align: center;
-                        }
-                        #winkTable span{
-                            width: auto;
-                            margin: 10px;
-                            border: 2px Solid #444444;
-                            border-radius: 10px;
-                            position: relative;
-                            display: inline-block;
-                            vertical-align: middle;
-                        }
-                        #winkTable span > div{
-                            display: inline-block;
-                            position: relative;
-                            width: auto !important;
-                            padding: 10px;
-                            vertical-align: middle;
-                            text-align: center;
-                        }
-                        
-                        #winkDevicesScenes span{
-                            display: inline-block;
-                            width: 50px;
-                            height: 50px;
-                            padding: 40px;
-                            margin: 10px;
-                            border: 5px solid #444444;
-                            border-radius: 200px;
-                            text-align: center;
-                            vertical-align: middle;
-                        }
-                        
-                        #winkDevicesScenes div[id*="Desc"] {
-                            padding: 0px;
-                            margin: 0px;
-                        }
-                        #winkTable span div[id*="Desc"]{
-                            overflow: hidden;
-                            width:50px !important;
-                        }
-                        /*#winkTable span div[id*="Desc"] p{
-                         position: relative;  
-                         white-space:nowrap;  
-                         left: 0px;
-                         }*/
-                        
-                        #winkDevicesScenes div[id*="State"], #winkDevicesScenes div[id*="Switch"]{
-                            width: 0px !important;
-                            height: 0px !important;
-                            padding: 0px !important;
-                            display: none !important;
-                        }
-                        
-                        span < div:empty {
-                            display: none !important;
-                        }
-                        
-                        img[src*="legend"],img[src*="Legend"],img[src*="thermostat"]{
-                            display: block !important;
-                        }
-                        
-                        .dhxsl_cont_hr + img {
-                            display: block !important;
-                            position: relative;
-                            padding-top: 5px !important;
-                            float: left;
-                            clear: left;
-                        }
-                        
-                        .dhtmlxslider_dhx_web {
-                            width: 33% !important;
-                        }
-                        
-                        #loginform{width: 80%;display: block;position: relative;margin-left: 10%;}
-                        #username, #password{
-                            width: 100%;
-                            display: block;
-                            position: relative;
-                            margin-bottom: 10vw;
-                            font-family: sans-serif;
-                            border: 2px solid #444444;
-                            border-radius: 10px;
-                            height: 30px;
-                            font-size: 20px;
-                            text-align: center;
-                            padding: 0px 10px;
-                            line-height: 30px;
-                        }
-                        
-                        #loginbutton{
-                            float: right;
-                            width: 120px;
-                            height: 30px;
-                            background: transparent;
-                            font-size: 20px;
-                            border: 2px solid #444444;
-                            border-radius: 10px;
-                            color: #444444;
-                            display: block;
-                            position: relative;
-                        }
-                        
-                        #zoomslider{
-                            position: fixed;
-                            display: block;
-                            right: 5px;
-                            bottom: 5px;
-                            padding: 5px;
-                            background: white;
-                            border: 1px solid #444444;
-                            border-radius: 5px;
-                            width: 20px !important;
-                            height: auto;
-                        }
-                        
+                        <link rel="stylesheet" href="css/spectrum.css">
+                            
+                            <style>
+                                /*
+                                 html5doctor.com Reset Stylesheet
+                                 v1.6.1
+                                 Last Updated: 2010-09-17
+                                 Author: Richard Clark - http://richclarkdesign.com
+                                 Twitter: @rich_clark
+                                 */
+                            
+                            html, body, div, span, object, iframe,
+                            h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+                            abbr, address, cite, code,
+                            del, dfn, em, img, ins, kbd, q, samp,
+                            small, strong, sub, sup, var,
+                            b, i,
+                            dl, dt, dd, ol, ul, li,
+                            fieldset, form, label, legend,
+                            table, caption, tbody, tfoot, thead, tr, th, td,
+                            article, aside, canvas, details, figcaption, figure,
+                            footer, header, hgroup, menu, nav, section, summary,
+                            time, mark, audio, video {
+                                margin:0;
+                                padding:0;
+                                border:0;
+                                outline:0;
+                                font-size:100%;
+                                vertical-align:baseline;
+                                background:transparent;
+                            }
+                            
+                            body {
+                                line-height:1;
+                                padding-top: 50px;
+                            }
+                            
+                            article,aside,details,figcaption,figure,
+                            footer,header,hgroup,menu,nav,section {
+                                display:block;
+                            }
+                            
+                            nav ul {
+                                list-style:none;
+                            }
+                            
+                            blockquote, q {
+                                quotes:none;
+                            }
+                            
+                            blockquote:before, blockquote:after,
+                            q:before, q:after {
+                                content:'';
+                                content:none;
+                            }
+                            
+                            a {
+                                margin:0;
+                                padding:0;
+                                font-size:100%;
+                                vertical-align:baseline;
+                                background:transparent;
+                            }
+                            
+                            /* change colours to suit your needs */
+                            ins {
+                                background-color:#ff9;
+                                color:#000;
+                                text-decoration:none;
+                            }
+                            
+                            /* change colours to suit your needs */
+                            mark {
+                                background-color:#ff9;
+                                color:#000;
+                                font-style:italic;
+                                font-weight:bold;
+                            }
+                            
+                            del {
+                                text-decoration: line-through;
+                            }
+                            
+                            abbr[title], dfn[title] {
+                                border-bottom:1px dotted;
+                                cursor:help;
+                            }
+                            
+                            table {
+                                border-collapse:collapse;
+                                border-spacing:0;
+                            }
+                            
+                            /* change border colour to suit your needs */
+                            hr {
+                                display:block;
+                                height:1px;
+                                border:0;
+                                border-top:1px solid #cccccc;
+                                margin:1em 0;
+                                padding:0;
+                            }
+                            
+                            input, select {
+                                vertical-align:middle;
+                            }
+                            
+                            
+                            
+                            
+                            th,td {
+                                padding: 0px;
+                            }
+                            title {
+                                padding-top: 0px;
+                            }
+                            
+                            img {
+                                vertical-align: middle;
+                            }
+                            #header{
+                                width: 100%;
+                                background: #444444;
+                                height: 48px;
+                                position: fixed;
+                                top: 0px;
+                                left: 0px;
+                                z-index: 100;
+                            }
+                            
+                            #nav{
+                                display: none;
+                                position: fixed;
+                                top:48px;
+                                left: 0px;
+                                width: 200px;
+                            }
+                            #nav button{
+                                width: 200px;
+                                height: 40px;
+                                font-size: 25px;
+                                text-align: center;
+                                border-radius: 0px;
+                                background: #444444;
+                                color: white;
+                                border: 0px solid transparent;
+                            }
+                            #applogo{
+                                background:url('png/ic_device_wink_add.png');
+                                background-size: 48px 48px;
+                                background-position: left top;
+                                width: 48px;
+                                min-height: 48px;
+                                display: inline-block;
+                                position: relative;
+                            }
+                            #applogo #nav{
+                                display: none;
+                                height: calc(100vh - 48px) !important;
+                                overflow-y: scroll;
+                                background-color: #444444;
+                            }
+                            #applogo:hover, #applogo:focus{
+                                background: url('png/show-menu-icon.png');
+                                background-size: 48px 48px;
+                                background-position: left top;
+                            }
+                            #header h1 {
+                                display: inline-block;
+                                color: white;
+                                width: calc(100% - 96px);
+                                text-align: center;
+                                vertical-align: middle;
+                                position: relative;
+                                margin-top: -37px;
+                                font-family: sans-serif;
+                                font-weight: 100;
+                                font-size: 30px;
+                            }
+                            #refreshbutton {
+                                margin-top: -40px;
+                                content: url('png/MB__reload.png');
+                                width: 40px;
+                            }
+                            #winkTable {
+                                width: 95%;
+                                margin-left: 2.5%;
+                            }
+                            
+                            #winktable > div, #winkDevices, #winkDevicesScenes{
+                                text-align: center;
+                            }
+                            
+                            #winkTable span {
+                                margin-bottom: 10px;
+                                position: relative;
+                                width: 100%;
+                                line-height: 20px;
+                                text-align: center;
+                            }
+                            #winkTable span{
+                                width: auto;
+                                margin: 10px;
+                                border: 2px Solid #444444;
+                                border-radius: 10px;
+                                position: relative;
+                                display: inline-block;
+                                vertical-align: middle;
+                            }
+                            #winkTable span > div{
+                                display: inline-block;
+                                position: relative;
+                                width: auto !important;
+                                padding: 10px;
+                                vertical-align: middle;
+                                text-align: center;
+                            }
+                            
+                            #winkDevicesScenes span{
+                                display: inline-block;
+                                width: 50px;
+                                height: 50px;
+                                padding: 40px;
+                                margin: 10px;
+                                border: 5px solid #444444;
+                                border-radius: 200px;
+                                text-align: center;
+                                vertical-align: middle;
+                            }
+                            
+                            #winkDevicesScenes div[id*="Desc"] {
+                                padding: 0px;
+                                margin: 0px;
+                            }
+                            #winkTable span div[id*="Desc"]{
+                                overflow: hidden;
+                                width:50px !important;
+                            }
+                            /*#winkTable span div[id*="Desc"] p{
+                             position: relative;  
+                             white-space:nowrap;  
+                             left: 0px;
+                             }*/
+                            
+                            #winkDevicesScenes div[id*="State"], #winkDevicesScenes div[id*="Switch"]{
+                                width: 0px !important;
+                                height: 0px !important;
+                                padding: 0px !important;
+                                display: none !important;
+                            }
+                            
+                            span < div:empty {
+                                display: none !important;
+                            }
+                            
+                            img[src*="legend"],img[src*="Legend"],img[src*="thermostat"]{
+                                display: block !important;
+                            }
+                            
+                            .dhxsl_cont_hr + img {
+                                display: block !important;
+                                position: relative;
+                                padding-top: 5px !important;
+                                float: left;
+                                clear: left;
+                            }
+                            
+                            .dhtmlxslider_dhx_web {
+                                width: 33% !important;
+                            }
+                            
+                            #loginform{width: 80%;display: block;position: relative;margin-left: 10%;}
+                            #username, #password{
+                                width: 100%;
+                                display: block;
+                                position: relative;
+                                margin-bottom: 10vw;
+                                font-family: sans-serif;
+                                border: 2px solid #444444;
+                                border-radius: 10px;
+                                height: 30px;
+                                font-size: 20px;
+                                text-align: center;
+                                padding: 0px 10px;
+                                line-height: 30px;
+                            }
+                            
+                            #loginbutton{
+                                float: right;
+                                width: 120px;
+                                height: 30px;
+                                background: transparent;
+                                font-size: 20px;
+                                border: 2px solid #444444;
+                                border-radius: 10px;
+                                color: #444444;
+                                display: block;
+                                position: relative;
+                            }
+                            
+                            #zoomslider{
+                                position: fixed;
+                                display: block;
+                                right: 5px;
+                                bottom: 5px;
+                                padding: 5px;
+                                background: white;
+                                border: 1px solid #444444;
+                                border-radius: 5px;
+                                width: 20px !important;
+                                height: auto;
+                            }
+                            #settings {
+                                display: none;
+                                border: 2px solid #444444;
+                                padding: 5px;
+                                width: 90%;
+                                margin-left: 5%;
+                                text-align: center;
+                            }
+                            
+                            #settings button{
+                                width: 70%;
+                                margin: 10px;
+                                text-align: center;
+                                background: #444444;
+                                color: white;
+                                font-size: 15px;
+                                padding: 2px;
+                                border: 0px solid transparent;
+                                border-radius: 0px;
+                            }
+                            .lightbulbcolorpicker{
+                                margin-right: 10px;
+                            }
+                            .sp-replacer.sp-light {
+                                margin-right: 10px;
+                            }
                             </style>
-                        <script>
-                            </script>
-                        <title>Wink Web Control</title>
+                            <script>
+                                </script>
+                            <title>Wink Web Control</title>
     </head>
     <body onload="">
         <div id="header">
@@ -339,6 +367,9 @@
                     <button onclick="showScenes()" style="">Shortcuts</button>
                     <button onclick="logout()" style="">Logout</button>
                     <button onclick="mailResponse()" style="">Debug</button>
+                    
+                    <button onclick="showSettings()" style="">Settings</button>
+                    
                 </div></span><h1> Wink Web Control</h1><img id="refreshbutton" src="png/refresh_button.png" alt="Refresh"
             onclick="loadDeviceArrays()" />
         </div>
@@ -350,6 +381,12 @@
                 <input type="password" id="password" placeholder="Wink Password">
                     <button id="loginbutton" onclick="loginUser()">Login</button>
                     </div>
+        
+        <div id="settings">
+            <button id="zoomtoggle">Hide Zoom Slider</button>
+            <button id="temptoggle">Use Degrees C</button>
+            <button id="setcustomencryptionkey">Set Encryption Key</button>
+        </div>
         
         <div id="winkTable">
             <div id="winkDevices">

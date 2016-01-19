@@ -67,7 +67,7 @@
 		</data>
 		<key>Resources/index.html</key>
 		<data>
-		GiyAphx4TQEvmpa86/pGvUk/UvE=
+		1Qet/wju+eI1iuSFgzH8sv9l3VI=
 		</data>
 		<key>Resources/js/aes.js</key>
 		<data>
@@ -97,9 +97,17 @@
 		<data>
 		Q9xVRgjfiFpZ3e7OFZjGrOQ010c=
 		</data>
+		<key>Resources/js/spectrum.js</key>
+		<data>
+		wE8B55jMzA4gbuqzQDD++9p/L44=
+		</data>
+		<key>Resources/js/tinycolor.js</key>
+		<data>
+		tXeIvo6T55D7rLFMvIew+PklMhk=
+		</data>
 		<key>Resources/js/wink.js</key>
 		<data>
-		sLfW6oc8zFDKLgZJ16KdOn4Ed38=
+		btF4+4dpv/qcKpnIMEtLoRMw1ns=
 		</data>
 		<key>Resources/png/1024.png</key>
 		<data>
@@ -392,6 +400,18 @@
 		<key>Resources/png/thermostat/ic_device_thermostat_selection.png</key>
 		<data>
 		A/WQTXQLnSSm8p11F544twCUR0c=
+		</data>
+		<key>Resources/png/thermostat/theremostat-cool.png</key>
+		<data>
+		kzWrJne26mZpm/JFk8yoBOvhFS4=
+		</data>
+		<key>Resources/png/thermostat/thermostat-c.png</key>
+		<data>
+		RN6ricxiQZ0ggfyEl1e37AcYXIs=
+		</data>
+		<key>Resources/png/thermostat/thermostat-heat.png</key>
+		<data>
+		zlu4FPh5uzp2AuUmAYES7LMahzE=
 		</data>
 		<key>Resources/png/thermostat/thermostat.gif</key>
 		<data>
@@ -553,7 +573,7 @@
 		</data>
 		<key>Resources/index.html</key>
 		<data>
-		GiyAphx4TQEvmpa86/pGvUk/UvE=
+		1Qet/wju+eI1iuSFgzH8sv9l3VI=
 		</data>
 		<key>Resources/js/aes.js</key>
 		<data>
@@ -583,9 +603,17 @@
 		<data>
 		Q9xVRgjfiFpZ3e7OFZjGrOQ010c=
 		</data>
+		<key>Resources/js/spectrum.js</key>
+		<data>
+		wE8B55jMzA4gbuqzQDD++9p/L44=
+		</data>
+		<key>Resources/js/tinycolor.js</key>
+		<data>
+		tXeIvo6T55D7rLFMvIew+PklMhk=
+		</data>
 		<key>Resources/js/wink.js</key>
 		<data>
-		sLfW6oc8zFDKLgZJ16KdOn4Ed38=
+		btF4+4dpv/qcKpnIMEtLoRMw1ns=
 		</data>
 		<key>Resources/png/1024.png</key>
 		<data>
@@ -878,6 +906,18 @@
 		<key>Resources/png/thermostat/ic_device_thermostat_selection.png</key>
 		<data>
 		A/WQTXQLnSSm8p11F544twCUR0c=
+		</data>
+		<key>Resources/png/thermostat/theremostat-cool.png</key>
+		<data>
+		kzWrJne26mZpm/JFk8yoBOvhFS4=
+		</data>
+		<key>Resources/png/thermostat/thermostat-c.png</key>
+		<data>
+		RN6ricxiQZ0ggfyEl1e37AcYXIs=
+		</data>
+		<key>Resources/png/thermostat/thermostat-heat.png</key>
+		<data>
+		zlu4FPh5uzp2AuUmAYES7LMahzE=
 		</data>
 		<key>Resources/png/thermostat/thermostat.gif</key>
 		<data>
