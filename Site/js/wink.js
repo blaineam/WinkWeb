@@ -315,7 +315,7 @@ function getWinkRow(wink, row) {
                                            };
                                            setDevice(deviceTarget, body);
                                            //					wink[1].desired_settings.locked = bLocked;
-                                           wink[1].last_reading.powered = nPowered;
+                                           //wink[1].last_reading.powered = nPowered;
             									$("#State"+row+" img").attr("src", "png/lights/" + nPowered + ".png");
                                            });
             break;
@@ -986,6 +986,7 @@ function getGroupRow(wink, row) {
                                        //			wink[1].desired_state.powered = bPowered;
                                        //			wink[1].desired_state.brightness = value;
                                        wink.reading_aggregation.powered.or = bPowered;
+                                       $('#winkTable span #State'+row+" img").attr("src", "png/lights/" + bPowered + ".png");
                                        updateGroupDevices(wink, value);
                                        
 										   }else{
@@ -1001,6 +1002,7 @@ function getGroupRow(wink, row) {
                                        //			wink[1].desired_state.brightness = value;
                                        wink.reading_aggregation.powered.or = bPowered;
                                        wink.reading_aggregation.brightness.average = value;
+                                       $('#winkTable span #State'+row+" img").attr("src", "png/lights/" + bPowered + ".png");
                                        updateGroupDevices(wink, value);
 										   }
                                        
@@ -1371,6 +1373,7 @@ function loadGroupArray(){
                 // ... and use it as needed by your app.
                 var winks = JSON.parse(resp);
                 for (var i = 0; i < winks.data.length; i++) {
+	                
 	                //console.log(winks.data[i].reading_aggregation);
 					if(!$.isEmptyObject(winks.data[i].reading_aggregation)){
                     	groupsWinks.push(winks.data[i]);
@@ -1459,6 +1462,8 @@ function setDevice(deviceTarget, body) {
             document.getElementById("winkResult").innerHTML = "Error Calling Wink REST API "
             + xhr.status;
             return;
+            
+            setTimeout(loadDeviceArray(), 2000);
         }
         // Request successful, read the response
         var resp = xhr.responseText;
@@ -1486,16 +1491,18 @@ function setScene(sceneTarget) {
             document.getElementById("winkResult").innerHTML = "Error Calling Wink REST API "
             + xhr.status;
             return;
+            
+            setTimeout(loadSceneArray(), 2000);
         }
         // Request successful, read the response
         var resp = xhr.responseText;
-        document.getElementById("winkResult").innerHTML = "Setting Device State";
+        //document.getElementById("winkResult").innerHTML = "Setting Device State";
     }
     xhr.open("POST", 'https://winkapi.quirky.com/' + sceneTarget);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization","Bearer " + AccessToken);
     xhr.send(null);
-    loadSceneArray();
+    //loadSceneArray();
 }
 
 function setGroup(groupTarget, body) {
@@ -1509,14 +1516,15 @@ function setGroup(groupTarget, body) {
             document.getElementById("winkResult").innerHTML = "Error Calling Wink REST API "
             + xhr.status;
             return;
+            setTimeout(loadGroupArray(), 2000);
         }
         // Request successful, read the response
         var resp = xhr.responseText;
-        document.getElementById("winkResult").innerHTML = "Setting Device State";
+        //document.getElementById("winkResult").innerHTML = "Setting Device State";
     }
     xhr.open("POST", 'https://winkapi.quirky.com/' + groupTarget);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization","Bearer " + AccessToken);
     xhr.send(JSON.stringify(body));
-    loadGroupArray();
+    //loadGroupArray();
 }
