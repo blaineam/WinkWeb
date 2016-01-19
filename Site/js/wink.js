@@ -18,20 +18,28 @@ function logout(){
     eraseCookie("pass");
     window.location.reload();
 }
+if(readCookie("ekey")==null){
+		window.encryptionkey = "3kWK*)9=R&GxqmgvWw=GKi824N7J3zojDFJTB=^7&b24rnd.z}";
+	}else{
+		window.encryptionkey = readCookie("ekey");
+	}
 function loginUser(){
+	
+	
+	
     var username = document.getElementById("username").value;
-    createCookie("username", CryptoJS.AES.encrypt(username, "3kWK*)9=R&GxqmgvWw=GKi824N7J3zojDFJTB=^7&b24rnd.z}").toString(), 365);
+    createCookie("username", CryptoJS.AES.encrypt(username, window.encryptionkey).toString(), 365);
     var password = document.getElementById("password").value;
-    createCookie("pass", CryptoJS.AES.encrypt(password, "3kWK*)9=R&GxqmgvWw=GKi824N7J3zojDFJTB=^7&b24rnd.z}").toString(), 365);
+    createCookie("pass", CryptoJS.AES.encrypt(password, window.encryptionkey).toString(), 365);
     document.getElementById("loginform").style.display = 'none';
     fillBody(username, password);
 }
 
 function checkUser(){
     if(readCookie('username')){
-        var username = CryptoJS.AES.decrypt(readCookie('username').toString(), "3kWK*)9=R&GxqmgvWw=GKi824N7J3zojDFJTB=^7&b24rnd.z}").toString(CryptoJS.enc.Utf8);
+        var username = CryptoJS.AES.decrypt(readCookie('username').toString(), window.encryptionkey).toString(CryptoJS.enc.Utf8);
         if(readCookie('pass')){
-            var	password = CryptoJS.AES.decrypt(readCookie('pass').toString(), "3kWK*)9=R&GxqmgvWw=GKi824N7J3zojDFJTB=^7&b24rnd.z}").toString(CryptoJS.enc.Utf8);
+            var	password = CryptoJS.AES.decrypt(readCookie('pass').toString(), window.encryptionkey).toString(CryptoJS.enc.Utf8);
             document.getElementById("loginform").style.display = 'none';
             fillBody(username, password);
             return true;
@@ -68,7 +76,6 @@ $('#applogo #nav').hide();
 	
 	
 	
-	
             var cell = document.getElementById("zoomslider");
 	zoomslider = new dhtmlXSlider({
                                                   parent: cell,
@@ -87,12 +94,66 @@ $('#applogo #nav').hide();
 												  createCookie("zoom",izoom,365);
 												  $('#winkTable span').css({zoom: izoom});
                                                });
-                                                  
-                                                  
-                                                  
-
+                                                             
+                              if(readCookie("zoomtoggle")==null|readCookie("zoomtoggle")=="false"){
+		                  	
+	                  	$("#zoomslider").show();
+	                  	}else if(readCookie("zoomtoggle")=="true"){
+		                  	 
+	                  	$("#zoomslider").hide();
+	                  	} 
+	                  	
+	                  	if(readCookie("temptoggle")==null|readCookie("temptoggle")=="false"){
+		                  	
+	                	createCookie("temp","F",365);  
+	                	
+	                  	}else if(readCookie("temptoggle")=="true"){
+		                  	
+	                	createCookie("temp","C",365);  
+	                  	}
+	                  	
+	                  	        
+                  $('#zoomtoggle').click(function(){
+	                  	if(readCookie("zoomtoggle")==null|readCookie("zoomtoggle")=="false"){
+		                  	
+	                	createCookie("zoomtoggle",true,365);  
+	                	$('#zoomtoggle').html('Show Zoom Slider');
+	                  	}else if(readCookie("zoomtoggle")=="true"){
+		                  	
+	                	createCookie("zoomtoggle",false,365);  
+	                	$('#zoomtoggle').html('Hide Zoom Slider');
+	                  	}
+	                  	
+	                  	$("#zoomslider").toggle();
+                  });
+                  $('#temptoggle').click(function(){
+	                  	if(readCookie("temptoggle")==null|readCookie("temptoggle")=="false"){
+		                  	
+	                	createCookie("temptoggle",true,365);  
+	                	createCookie("temp","C",365);  
+	                	$('#temptoggle').html('Use Degrees F');
+	                  	}else if(readCookie("temptoggle")=="true"){
+		                  	
+	                	createCookie("temptoggle",false,365);  
+	                	createCookie("temp","F",365);  
+	                	$('#temptoggle').html('Use Degrees C');
+	                  	}
+                  });                              
+				  
+                  $('#setcustomencryptionkey').click(function(){
+	                  	window.encryptionkey = prompt('Please enter a unique encryption key. The more random (uses of Numbers, Letters, Caps, & Symbols) it is the better', '');
+	                  	createCookie("ekey",window.encryptionkey,365);
+	                  	window.location.reload();
+                  });
 	
 });
+
+
+function showSettings(){
+	$('#winkTable').toggle();
+	$('#settings').toggle();
+}
+
 
 function createRequest() {
     var result = null;
@@ -110,13 +171,26 @@ function createRequest() {
     }
     return result;
 }
-
+function xyzc(c){return ((c/255)>0.04045)?Math.pow((((c/255)+0.055)/1.055),2.4)*100:(c/255)/12.92*100;}
 function getWinkRow(wink, row) {
     strDeviceType = wink[0] + "s";
     
     
     switch(strDeviceType){
         case 'light_bulbs':
+        	//console.log(wink[1]);
+        	if(typeof wink[1].desired_state.color_model !== "undefined"){
+	        	//console.log(wink[1].last_reading);
+	        	var oldbrightness = wink[1].last_reading.brightness * 100;
+	        	var oldhue = ((wink[1].last_reading.hue) * 360);
+	        	var oldsaturation = wink[1].last_reading.saturation * 100;
+	        	var oldcolor = tinycolor("hsv "+oldhue + ", " + oldsaturation + ", " + oldbrightness);
+	        	//console.log(oldcolor);
+	        	$("#State"+row).append('<input type="test" class="lightbulbcolorpicker" value="'+oldcolor.toHexString()+'">');
+	        	var oldcolorhex = oldcolor.toHexString();
+	        	
+	        	//console.log(oldcolorhex);
+        	}
             var cell = document.getElementById("State" + row);
             var state = document.createElement("img");
             var bPowered = wink[1].last_reading.powered;
@@ -156,6 +230,61 @@ function getWinkRow(wink, row) {
                                                   min: 0,
                                                   max: 100
                                                   });
+                                                  
+                                                          	if(typeof wink[1].desired_state.color_model !== "undefined"){
+	        
+	$("#State"+row+" .lightbulbcolorpicker").spectrum({
+		color: oldcolorhex,
+		change: function(color) {
+    newColornohash = color.toHexString().replace('#','');
+    	newrgb = tinycolor(color.toHexString()).toRgbString().replace('rgb(','').replace(')','').split(', ');
+    	
+    	var_R = ( newrgb[0] / 255 )        //R from 0 to 255
+var_G = ( newrgb[1] / 255 )        //G from 0 to 255
+var_B = ( newrgb[2] / 255 )        //B from 0 to 255
+
+if ( var_R > 0.04045 ) var_R = ( ( var_R + 0.055 ) / 1.055 ) ^ 2.4
+else                   var_R = var_R / 12.92
+if ( var_G > 0.04045 ) var_G = ( ( var_G + 0.055 ) / 1.055 ) ^ 2.4
+else                   var_G = var_G / 12.92
+if ( var_B > 0.04045 ) var_B = ( ( var_B + 0.055 ) / 1.055 ) ^ 2.4
+else                   var_B = var_B / 12.92
+
+var_R = var_R * 100
+var_G = var_G * 100
+var_B = var_B * 100
+
+//Observer. = 2°, Illuminant = D65
+newX = var_R * 0.4124 + var_G * 0.3576 + var_B * 0.1805
+newY = var_R * 0.2126 + var_G * 0.7152 + var_B * 0.0722
+//Z = var_R * 0.0193 + var_G * 0.1192 + var_B * 0.9505
+    	
+    	
+    	
+    	newhsb = tinycolor(color.toHexString()).toHsvString().replace('hsv(','').replace(')','').replace('%', '').split(', ');
+    	newhue = newhsb[0]/360;
+    	newsaturation = newhsb[1]/100;
+    	newbrightness = newhsb[2].replace('%', '')/100;
+   
+    
+    var body = {
+                                               "desired_state":
+                                               {
+                                               "powered":true, "color_model":"hsb", "color":newColornohash, "color_x":newX, "color_y":newY, "brightnes":newbrightness, "hue":newhue, "saturation":newsaturation
+                                               }
+                                               };
+                                               console.log(body);
+                                               var wink_id_temp = wink[0] + '_id';
+            var wink_id = wink[1][wink_id_temp];
+                                               setDevice(strDeviceType + "/" + wink_id, body);
+                                               //console.log(newbrightness);
+                                               mySliderLight[row].setValue(newbrightness*100);
+                                               //window.location.reload();
+}
+	});
+        	}
+                                                  
+                                                  
             // Add Line Break
             var lineNext = document.createElement("BR");
             cell.appendChild(lineNext);
@@ -525,7 +654,20 @@ function getWinkRow(wink, row) {
             var nTemp = wink[1].desired_state.max_set_point;
         	}
             var cell = document.getElementById("State" + row);
+            if(readCookie("temp")=="C"){
+	            var mmin = 16;
+	            var mmax = 24;
+	            var sstep = 0.5;
+            var sscale = "png/thermostat/thermostat-c.png";
+            }else{
+	            
             nTemp = (nTemp * 1.8) + 32;
+            var mmin =  50;
+            var mmax = 80;
+            var sstep = 1;
+            var sscale = "png/thermostat/thermostat.gif";
+            }
+            
             cell.appendChild(document.createTextNode(nTemp));
             var cell = document.getElementById("Desc" + row);
             var divDesc = document.createElement('div');
@@ -555,23 +697,29 @@ function getWinkRow(wink, row) {
                                                   skin: "dhx_web",
                                                   tooltip: true,
                                                   vertical: false,
-                                                  min: 50,
-                                                  max: 80,
+                                                  min: mmin,
+                                                  max: mmax,
                                                   value: nTemp,
-                                                  step: 1});
+                                                  step: sstep});
             var lineNext = document.createElement("BR");
             var temp_bg = document.createElement("img");
             temp_bg.style.paddingTop = "5px";
-            temp_bg.src = "png/thermostat/thermostat.gif";
+            temp_bg.src = sscale;
             cell.appendChild(temp_bg);
             mySliderLight[row].attachEvent("onSlideEnd", function(newTemp){
                                            var deviceTarget = 'thermostats' + "/" + wink_id;
-                                           //Convert to Celsius
+                                           var newDisplayTemp = newTemp
+                                           if(readCookie("temp")=="C"){
+	        newTemp = newTemp;
+            }else{
+	            newTemp = (newTemp - 32)/1.8;
+         
+            }
                                            if(wink[1].desired_state.mode=="heat_only"){
-	        	var minTemp = (newTemp - 32)/1.8;
+	        	var minTemp = newTemp;
             var maxTemp = wink[1].desired_state.max_set_point;
         	}else{
-	        	var maxTemp = (newTemp - 32)/1.8;
+	        	var maxTemp = newTemp;
             var minTemp = wink[1].desired_state.min_set_point;
         	}
                                            
@@ -587,7 +735,7 @@ function getWinkRow(wink, row) {
                                            wink[1].last_reading.max_set_point = newTemp;
                                            wink[1].last_reading.min_set_point = newTemp;
                                            
-            									$("#State"+row).html(wink[1].desired_state.max_set_point);
+            									$("#State"+row).html(newDisplayTemp);
                                            });
             break;
             
@@ -1098,6 +1246,8 @@ function updateSceneDevices(wink){
  */
 
 function showDevices(device_array){
+	$("#winkTable").show();
+	$("#settings").hide();
 	if(device_array==lightWinks){
 		
     createCookie("deviceshown", "lightWinks", 1);
@@ -1167,6 +1317,8 @@ function showDevices(device_array){
 
 function showGroups(){
 	
+	$("#winkTable").show();
+	$("#settings").hide();
     createCookie("deviceshown", "groupsWinks", 1);
     var tbody = document.createElement("div");
     for (var i = 0; i < groupsWinks.length; i++) {
@@ -1192,6 +1344,8 @@ function showGroups(){
 
 function showScenes(){
 	
+	$("#winkTable").show();
+	$("#settings").hide();
     createCookie("deviceshown", "scenesWinks", 1);
     var tbody = document.createElement("div");
     for (var i = 0; i < scenesWinks.length; i++) {

@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		58CC01611C4DC041006F832E /* css in Resources */ = {isa = PBXBuildFile; fileRef = 58CC015D1C4DC041006F832E /* css */; };
-		58CC01621C4DC041006F832E /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 58CC015E1C4DC041006F832E /* index.html */; };
-		58CC01631C4DC041006F832E /* js in Resources */ = {isa = PBXBuildFile; fileRef = 58CC015F1C4DC041006F832E /* js */; };
-		58CC01641C4DC041006F832E /* png in Resources */ = {isa = PBXBuildFile; fileRef = 58CC01601C4DC041006F832E /* png */; };
 		58E1790D1C40BDAB0062EBFA /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58E1790C1C40BDAB0062EBFA /* WebKit.framework */; };
 		58EADC781C4190DE00727552 /* 16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EADC6F1C4190DE00727552 /* 16x16.png */; };
 		58EADC791C4190DE00727552 /* 24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EADC701C4190DE00727552 /* 24x24.png */; };
@@ -22,6 +18,10 @@
 		58EADC7F1C4190DE00727552 /* 256x256.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EADC761C4190DE00727552 /* 256x256.png */; };
 		58EADC801C4190DE00727552 /* 512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EADC771C4190DE00727552 /* 512x512.png */; };
 		58EADC821C4190F200727552 /* 1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EADC811C4190F200727552 /* 1024.png */; };
+		58F692EA1C4EFEAA0096565A /* png in Resources */ = {isa = PBXBuildFile; fileRef = 58F692E61C4EFEAA0096565A /* png */; };
+		58F692EB1C4EFEAA0096565A /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 58F692E71C4EFEAA0096565A /* index.html */; };
+		58F692EC1C4EFEAA0096565A /* js in Resources */ = {isa = PBXBuildFile; fileRef = 58F692E81C4EFEAA0096565A /* js */; };
+		58F692ED1C4EFEAA0096565A /* css in Resources */ = {isa = PBXBuildFile; fileRef = 58F692E91C4EFEAA0096565A /* css */; };
 		B3A03A891AC7C44E00154AEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A03A881AC7C44E00154AEB /* AppDelegate.swift */; };
 		B3A03A8B1AC7C44E00154AEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3A03A8A1AC7C44E00154AEB /* Images.xcassets */; };
 		B3A03A8E1AC7C44E00154AEB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3A03A8C1AC7C44E00154AEB /* MainMenu.xib */; };
@@ -43,10 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		58CC015D1C4DC041006F832E /* css */ = {isa = PBXFileReference; lastKnownFileType = folder; path = css; sourceTree = "<group>"; };
-		58CC015E1C4DC041006F832E /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		58CC015F1C4DC041006F832E /* js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = js; sourceTree = "<group>"; };
-		58CC01601C4DC041006F832E /* png */ = {isa = PBXFileReference; lastKnownFileType = folder; path = png; sourceTree = "<group>"; };
 		58E1790C1C40BDAB0062EBFA /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		58EADC6E1C41853D00727552 /* winkweb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = winkweb.entitlements; sourceTree = "<group>"; };
 		58EADC6F1C4190DE00727552 /* 16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 16x16.png; sourceTree = "<group>"; };
@@ -59,6 +55,10 @@
 		58EADC761C4190DE00727552 /* 256x256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 256x256.png; sourceTree = "<group>"; };
 		58EADC771C4190DE00727552 /* 512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 512x512.png; sourceTree = "<group>"; };
 		58EADC811C4190F200727552 /* 1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1024.png; path = png/1024.png; sourceTree = "<group>"; };
+		58F692E61C4EFEAA0096565A /* png */ = {isa = PBXFileReference; lastKnownFileType = folder; path = png; sourceTree = "<group>"; };
+		58F692E71C4EFEAA0096565A /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		58F692E81C4EFEAA0096565A /* js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = js; sourceTree = "<group>"; };
+		58F692E91C4EFEAA0096565A /* css */ = {isa = PBXFileReference; lastKnownFileType = folder; path = css; sourceTree = "<group>"; };
 		B3A03A831AC7C44E00154AEB /* winkweb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = winkweb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3A03A871AC7C44E00154AEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3A03A881AC7C44E00154AEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,10 +95,10 @@
 		58E179031C40B8740062EBFA /* web */ = {
 			isa = PBXGroup;
 			children = (
-				58CC015D1C4DC041006F832E /* css */,
-				58CC015E1C4DC041006F832E /* index.html */,
-				58CC015F1C4DC041006F832E /* js */,
-				58CC01601C4DC041006F832E /* png */,
+				58F692E61C4EFEAA0096565A /* png */,
+				58F692E71C4EFEAA0096565A /* index.html */,
+				58F692E81C4EFEAA0096565A /* js */,
+				58F692E91C4EFEAA0096565A /* css */,
 			);
 			name = web;
 			sourceTree = "<group>";
@@ -277,17 +277,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58CC01641C4DC041006F832E /* png in Resources */,
-				58CC01611C4DC041006F832E /* css in Resources */,
+				58F692ED1C4EFEAA0096565A /* css in Resources */,
+				58F692EA1C4EFEAA0096565A /* png in Resources */,
 				58EADC821C4190F200727552 /* 1024.png in Resources */,
 				58EADC7F1C4190DE00727552 /* 256x256.png in Resources */,
 				58EADC7B1C4190DE00727552 /* 48x48.png in Resources */,
 				58EADC801C4190DE00727552 /* 512x512.png in Resources */,
-				58CC01621C4DC041006F832E /* index.html in Resources */,
+				58F692EB1C4EFEAA0096565A /* index.html in Resources */,
 				58EADC791C4190DE00727552 /* 24x24.png in Resources */,
 				58EADC7D1C4190DE00727552 /* 96x96.png in Resources */,
 				B3A03A8B1AC7C44E00154AEB /* Images.xcassets in Resources */,
-				58CC01631C4DC041006F832E /* js in Resources */,
+				58F692EC1C4EFEAA0096565A /* js in Resources */,
 				B3A03A8E1AC7C44E00154AEB /* MainMenu.xib in Resources */,
 				58EADC781C4190DE00727552 /* 16x16.png in Resources */,
 				58EADC7A1C4190DE00727552 /* 32x32.png in Resources */,

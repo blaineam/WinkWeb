@@ -5,10 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="js/aes.js"></script>
 <script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/spectrum.js"></script>
+<script src="js/tinycolor.js"></script>
 <script type="text/javascript" src="js/wink.js"></script>
 <script type="text/javascript" src="js/dhtmlxslider.js"></script>
 <link rel="stylesheet" href="js/dhtmlxslider_dhx_skyblue.css">
 <link rel="stylesheet" href="js/dhtmlxslider_dhx_web.css">
+<link rel="stylesheet" href="css/spectrum.css">
 
 <style>
 	/* 
@@ -320,7 +323,32 @@ img[src*="legend"],img[src*="Legend"],img[src*="thermostat"]{
 	width: 20px !important;
 	height: auto;
 }
+#settings {
+	display: none;
+	border: 2px solid #444444;
+	padding: 5px;
+	width: 90%;
+	margin-left: 5%;
+	text-align: center;
+}
 
+#settings button{
+	width: 70%;
+	margin: 10px;
+	text-align: center;
+	background: #444444;
+	color: white;
+	font-size: 15px;
+	padding: 2px;
+	border: 0px solid transparent;
+	border-radius: 0px;
+}
+.lightbulbcolorpicker{
+	margin-right: 10px;
+}
+.sp-replacer.sp-light {
+    margin-right: 10px;
+}
 </style>
 <script>
 	</script>
@@ -339,6 +367,9 @@ img[src*="legend"],img[src*="Legend"],img[src*="thermostat"]{
 <button onclick="showScenes()" style="">Shortcuts</button>
 <button onclick="logout()" style="">Logout</button>
 <button onclick="mailResponse()" style="">Debug</button>
+
+<button onclick="showSettings()" style="">Settings</button>
+
 </div></span><h1> Wink Web Control</h1><img id="refreshbutton" src="png/refresh_button.png" alt="Refresh"
 		onclick="loadDeviceArrays()" />
 	</div>
@@ -350,6 +381,12 @@ img[src*="legend"],img[src*="Legend"],img[src*="thermostat"]{
 		<input type="password" id="password" placeholder="Wink Password">
 		<button id="loginbutton" onclick="loginUser()">Login</button>
 	</div>
+
+<div id="settings">
+<button id="zoomtoggle">Hide Zoom Slider</button>
+<button id="temptoggle">Use Degrees C</button>
+<button id="setcustomencryptionkey">Set Encryption Key</button>
+</div>
 
 	<div id="winkTable">
 		<div id="winkDevices">
