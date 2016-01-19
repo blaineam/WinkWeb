@@ -215,6 +215,7 @@ img {
 	border-radius: 10px;
 	position: relative;
 	display: inline-block;
+	vertical-align: middle;
 }
 #winkTable span > div{
 	display: inline-block;
@@ -241,6 +242,15 @@ vertical-align: middle;
     padding: 0px;
     margin: 0px;
 }
+#winkTable span div[id*="Desc"]{
+	overflow: hidden;
+	width:50px !important;
+}
+/*#winkTable span div[id*="Desc"] p{
+	position: relative;  
+    white-space:nowrap;  
+    left: 0px;
+}*/
 
 #winkDevicesScenes div[id*="State"], #winkDevicesScenes div[id*="Switch"]{
 	width: 0px !important;

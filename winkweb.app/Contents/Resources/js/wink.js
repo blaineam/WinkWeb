@@ -134,17 +134,18 @@ function getWinkRow(wink, row) {
             img.height = 48;
             divDesc.appendChild(img);
             divDesc.appendChild(document.createElement("br"));
-            divDesc.appendChild(document.createTextNode(wink[1].name));
+            var p = document.createElement("p");
+            divDesc.appendChild(p);
+            p.appendChild(document.createTextNode(wink[1].name));
             cell.appendChild(divDesc);
             var cell = document.getElementById("Switch" + row);
             cell.style.width = "160px";
             var wink_id_temp = wink[0] + '_id';
             var wink_id = wink[1][wink_id_temp];
             if(wink[1].last_reading.powered)
-                nLight[row] = (wink[1].last_reading.brightness) * 100;
+                nLight[row] = wink[1].last_reading.brightness * 100;
             else
                 nLight[row] = 0;
-            
             mySliderLight[row] = new dhtmlXSlider({
                                                   parent: "Switch" + row,
                                                   value: nLight[row],
@@ -179,10 +180,11 @@ function getWinkRow(wink, row) {
                                                }
                                                };
                                                setDevice(deviceTarget, body);
-                                               wink[1].desired_state.powered = bPowered;
-                                               wink[1].desired_state.brightness = value;
+                                               //wink[1].desired_state.powered = bPowered;
+                                               // wink[1].desired_state.brightness = value;
                                                wink[1].last_reading.powered = bPowered;
                                                wink[1].last_reading.brightness = value;
+                                               $("#State"+row+" img").attr("src", "png/lights/" + bPowered + ".png");
                                                });
             break;
             
@@ -246,6 +248,7 @@ function getWinkRow(wink, row) {
                                            setDevice(deviceTarget, body);
                                            //					wink[1].desired_settings.locked = bLocked;
                                            wink[1].last_reading.powered = nPowered;
+                                           $("#State"+row+" img").attr("src", "png/lights/" + nPowered + ".png");
                                            });
             break;
             
@@ -313,6 +316,7 @@ function getWinkRow(wink, row) {
                                            setDevice(deviceTarget, body);
                                            //					wink[1].desired_settings.locked = bLocked;
                                            wink[1].last_reading.powered = nPowered;
+                                           $("#State"+row+" img").attr("src", "png/lights/" + nPowered + ".png");
                                            });
             break;
             
@@ -368,7 +372,7 @@ function getWinkRow(wink, row) {
             temp_bg.style.align = 'left';
             cell.appendChild(temp_bg);
             mySliderLight[row].attachEvent("onSlideEnd", function(newPower){
-                                           var deviceTarget = 'shades' + "/" + wink_id;
+                                           var deviceTarget = 'garage_doors' + "/" + wink_id;
                                            
                                            nPowered = newPower;
                                            var body = {
@@ -380,6 +384,7 @@ function getWinkRow(wink, row) {
                                            setDevice(deviceTarget, body);
                                            //					wink[1].desired_settings.locked = bLocked;
                                            wink[1].last_reading.powered = nPowered;
+                                           $("#State"+row+" img").attr("src", "png/lights/" + nPowered + ".png");
                                            });
             break;
             
@@ -443,6 +448,7 @@ function getWinkRow(wink, row) {
                                            setDevice(deviceTarget, body);
                                            //					wink[1].desired_settings.locked = bLocked;
                                            wink[1].last_reading.powered = nPowered;
+                                           $("#State"+row+" img").attr("src", "png/lights/" + nPowered + ".png");
                                            });
             break;
             
@@ -505,12 +511,20 @@ function getWinkRow(wink, row) {
                                            setDevice(deviceTarget, body);
                                            //					wink[1].desired_settings.locked = bLocked;
                                            wink[1].last_reading.locked = bLocked;
+                                           
+                                           $("#State"+row+" img").attr("src", "png/locks/"+ bLocked + ".png");
                                            });
             break;
             
         case 'thermostats':
+            if(wink[1].desired_state.mode=="heat_only"){
+                
+                var nTemp = wink[1].desired_state.min_set_point;
+            }else{
+                
+                var nTemp = wink[1].desired_state.max_set_point;
+            }
             var cell = document.getElementById("State" + row);
-            var nTemp = wink[1].desired_state.max_set_point;
             nTemp = (nTemp * 1.8) + 32;
             cell.appendChild(document.createTextNode(nTemp));
             var cell = document.getElementById("Desc" + row);
@@ -519,7 +533,13 @@ function getWinkRow(wink, row) {
             divDesc.style.width = 60;
             divDesc.style.textAlign = 'center';
             var img = document.createElement("img");
-            img.src = "png/thermostat/ic_device_thermostat_selection.png";
+            if(wink[1].desired_state.mode=="heat_only"){
+                
+                img.src = "png/thermostat/thermostat-heat.png";
+            }else{
+                
+                img.src = "png/thermostat/thermostat-cool.png";
+            }
             img.width = 48;
             img.height = 48;
             divDesc.appendChild(img);
@@ -527,8 +547,6 @@ function getWinkRow(wink, row) {
             divDesc.appendChild(document.createTextNode(wink[1].name));
             cell.appendChild(divDesc);
             var cell = document.getElementById("Switch" + row);
-            var nTemp = wink[1].desired_state.max_set_point;
-            nTemp = (nTemp * 1.8) + 32;
             var wink_id_temp = wink[0] + '_id';
             var wink_id = wink[1][wink_id_temp];
             mySliderLight[row] = new dhtmlXSlider({
@@ -549,11 +567,18 @@ function getWinkRow(wink, row) {
             mySliderLight[row].attachEvent("onSlideEnd", function(newTemp){
                                            var deviceTarget = 'thermostats' + "/" + wink_id;
                                            //Convert to Celsius
-                                           newTemp = (newTemp - 32)/1.8;
+                                           if(wink[1].desired_state.mode=="heat_only"){
+                                           var minTemp = (newTemp - 32)/1.8;
+                                           var maxTemp = wink[1].desired_state.max_set_point;
+                                           }else{
+                                           var maxTemp = (newTemp - 32)/1.8;
+                                           var minTemp = wink[1].desired_state.min_set_point;
+                                           }
+                                           
                                            var body = {
                                            "desired_state":
                                            {
-                                           "mode":"heat_only","powered":true,"modes_allowed":null,"min_set_point":newTemp,"max_set_point":newTemp
+                                           "mode":wink[1].desired_state.mode,"powered":true,"modes_allowed":null,"min_set_point":minTemp,"max_set_point":maxTemp
                                            }
                                            };
                                            setDevice(deviceTarget, body);
@@ -561,6 +586,8 @@ function getWinkRow(wink, row) {
                                            wink[1].desired_state.min_set_point = newTemp;
                                            wink[1].last_reading.max_set_point = newTemp;
                                            wink[1].last_reading.min_set_point = newTemp;
+                                           
+                                           $("#State"+row).html(wink[1].desired_state.max_set_point);
                                            });
             break;
             
@@ -1106,6 +1133,34 @@ function showDevices(device_array){
     
     var izoom = readCookie("zoom");
     $('#winkTable span').css({zoom: izoom});
+    
+    /* scroll description or device names
+     
+     var scroll_text;
+     
+     var $elmt = $('#winkTable span div[id*="Desc"]');
+     setInterval(function() {
+     scrollText($elmt);
+     }, 500);
+     var c = 0;
+     var scrollText = function($elmt) {
+     var left = $elmt.find('p').position().left - 1;
+     left = left > $elmt.width() ? -$elmt.find("p").width() : left;
+     
+     if(left==1&&c<4){
+     c++;
+     left = 0;
+     }else{
+     c = 0;
+     }
+     $elmt.find('p').css({
+     left: left
+     });
+     };
+     
+     */
+    
+    
 }
 
 function showGroups(){
@@ -1407,14 +1462,16 @@ function setDevice(deviceTarget, body) {
         }
         // Request successful, read the response
         var resp = xhr.responseText;
-        document.getElementById("winkResult").innerHTML = "Setting Device State";
+        //document.getElementById("winkResult").innerHTML = "Setting Device State";
         
-        loadDeviceArrays();
+        //setTimeout(, 2000);
+        //loadDeviceArrays();
     }
     xhr.open("PUT", 'https://winkapi.quirky.com/' + deviceTarget);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization","Bearer " + AccessToken);
     xhr.send(JSON.stringify(body));
+    
     
 }
 
