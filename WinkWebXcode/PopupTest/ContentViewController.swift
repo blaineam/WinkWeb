@@ -1,11 +1,29 @@
 import AppKit
 import WebKit
 
-class ContentViewController : NSViewController {
+class ContentViewController : NSViewController, NSTextFieldDelegate {
     var webView: WKWebView?
     var closeButton: NSButton?
+    var textfield: NSTextField?
+    var demo: String = "https://wink.blainemiller.xyz/"
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    func checkURL(url : String!) -> Bool {
+        
+        let req = NSMutableURLRequest(URL: NSURL(string: url)!)
+        req.HTTPMethod = "HEAD"
+        req.timeoutInterval = 1.0 // Adjust to your needs
+        
+        var response : NSURLResponse?
+            
+        do{
+           try NSURLConnection.sendSynchronousRequest(req, returningResponse: &response)
+        }catch{
+            
+        }
+        
+        return ((response as? NSHTTPURLResponse)?.statusCode ?? -1) == 200
     }
     
     override func loadView() {
@@ -29,15 +47,23 @@ class ContentViewController : NSViewController {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
             "H:|-(0)-[webView]-(0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webView":webView!]))
         
+        textfield = NSTextField()
+        textfield!.translatesAutoresizingMaskIntoConstraints = false
+        textfield!.focusRingType = .None
+        textfield?.action = "loadnewurl"
+        textfield!.placeholderString = demo;
+        view.addSubview(textfield!)
+        
+  
         closeButton = NSButton()
         closeButton!.translatesAutoresizingMaskIntoConstraints = false
         closeButton!.focusRingType = .None
         closeButton!.title = "X";
         closeButton!.action = "quitapp"
         view.addSubview(closeButton!)
-        
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:[closeButton(==20)]-(0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["closeButton":closeButton!]))
+            "H:[textfield(==360)]-[closeButton(==20)]-(0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["textfield":textfield!, "closeButton":closeButton!]))
+
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
             "V:|-(0)-[webView(==580)]-[closeButton(==20)]-(0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["closeButton":closeButton!, "webView":webView!]))
     
@@ -50,20 +76,46 @@ class ContentViewController : NSViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        textfield!.delegate = self
+        loadUrl()
         
-        let fileURL = NSURL(fileURLWithPath:NSBundle.mainBundle().pathForResource("index", ofType:"html")!)
-
-        if webView!.respondsToSelector("loadFileURL:allowingReadAccessToURL:") {
-            // iOS9. One year later things are OK.
-            if #available(OSX 10.11, *) {
-                
-                webView!.loadFileURL(fileURL, allowingReadAccessToURL: fileURL)
-            } else {
-                let url = NSURL(string:"https://wink.blainemiller.xyz/")
+    }
+    func loadUrl(){
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let curl = defaults.stringForKey("url")
+        {
+            if(checkURL(curl)){
+                let url = NSURL(string:curl)
                 let req = NSURLRequest(URL:url!)
                 self.webView!.loadRequest(req)
-                // Fallback on earlier versions
+                
+                textfield!.stringValue = curl;
+            }else{
+                loaddefaulturl()
             }
+        }else{
+            loaddefaulturl()
         }
+    }
+    func loadnewurl(){
+        NSLog("fired")
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(textfield!.stringValue, forKey: "url")
+        loadUrl()
+    }
+    func loaddefaulturl(){
+        if(checkURL(demo)){
+            let url = NSURL(string:demo)
+            let req = NSURLRequest(URL:url!)
+            self.webView!.loadRequest(req)
+            
+            textfield!.stringValue = demo;
+        }
+    }
+    func textDidEndEditing(_notification: NSNotification){
+        NSLog("fired")
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(textfield!.stringValue, forKey: "url")
+        loadUrl()
     }
 }
