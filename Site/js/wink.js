@@ -1051,6 +1051,18 @@ function updateRefuel(wink, row){
 }
 
 function getGroupRow(wink, row) {
+	if(typeof wink.reading_aggregation.color_model !== "undefined"){
+	        	//console.log(wink[1].last_reading);
+	        	var oldbrightness = wink.reading_aggregation.brightness.average * 100;
+	        	var oldhue = ((wink.reading_aggregation.hue.average) * 360);
+	        	var oldsaturation = wink.reading_aggregation.saturation.average * 100;
+	        	var oldcolor = tinycolor("hsv "+oldhue + ", " + oldsaturation + ", " + oldbrightness);
+	        	//console.log(oldcolor);
+	        	$("#State"+row).append('<input type="test" class="lightbulbcolorpicker" value="'+oldcolor.toHexString()+'">');
+	        	var oldcolorhex = oldcolor.toHexString();
+	        	
+	        	//console.log(oldcolorhex);
+        	}
     var cell = document.getElementById("State" + row);
     var state = document.createElement("img");
     bPowered = false;
@@ -1105,6 +1117,64 @@ function getGroupRow(wink, row) {
                                           min: 0,
                                           max: 100
                                           });
+                                          
+                                          
+                                                         	if(typeof wink.reading_aggregation.color_model !== "undefined"){
+	        
+	$("#State"+row+" .lightbulbcolorpicker").spectrum({
+		color: oldcolorhex,
+		change: function(color) {
+    newColornohash = color.toHexString().replace('#','');
+    	newrgb = tinycolor(color.toHexString()).toRgbString().replace('rgb(','').replace(')','').split(', ');
+    	
+    	var_R = ( newrgb[0] / 255 )        //R from 0 to 255
+var_G = ( newrgb[1] / 255 )        //G from 0 to 255
+var_B = ( newrgb[2] / 255 )        //B from 0 to 255
+
+if ( var_R > 0.04045 ) var_R = ( ( var_R + 0.055 ) / 1.055 ) ^ 2.4
+else                   var_R = var_R / 12.92
+if ( var_G > 0.04045 ) var_G = ( ( var_G + 0.055 ) / 1.055 ) ^ 2.4
+else                   var_G = var_G / 12.92
+if ( var_B > 0.04045 ) var_B = ( ( var_B + 0.055 ) / 1.055 ) ^ 2.4
+else                   var_B = var_B / 12.92
+
+var_R = var_R * 100
+var_G = var_G * 100
+var_B = var_B * 100
+
+//Observer. = 2°, Illuminant = D65
+newX = var_R * 0.4124 + var_G * 0.3576 + var_B * 0.1805
+newY = var_R * 0.2126 + var_G * 0.7152 + var_B * 0.0722
+//Z = var_R * 0.0193 + var_G * 0.1192 + var_B * 0.9505
+    	
+    	
+    	
+    	newhsb = tinycolor(color.toHexString()).toHsvString().replace('hsv(','').replace(')','').replace('%', '').split(', ');
+    	newhue = newhsb[0]/360;
+    	newsaturation = newhsb[1]/100;
+    	newbrightness = newhsb[2].replace('%', '')/100;
+   
+    
+    var body = {
+                                               "desired_state":
+                                               {
+                                               "powered":true, "color_model":"hsb", "color":newColornohash, "color_x":newX, "color_y":newY, "brightnes":newbrightness, "hue":newhue, "saturation":newsaturation
+                                               }
+                                               };
+                                               console.log(body);
+                                       var deviceTarget = "groups/" + wink_id + "/activate";
+            setGroup(deviceTarget, body);
+                                               //console.log(newbrightness);
+                                               mySliderLight[row].setValue(newbrightness*100);
+                                               
+                                       $('#winkTable span #State'+row+" img").attr("src", "png/lights/" + true + ".png");
+                                       updateGroupDevices(wink, newbrightness);
+                                               //window.location.reload();
+}
+	});
+        	}
+                                          
+                                          
     // Add Line Break
     var lineNext = document.createElement("BR");
     cell.appendChild(lineNext);
@@ -1404,6 +1474,9 @@ function debugMSG(){
     };
     document.getElementById("winkResult").innerHTML = "Generating Message...";
     xhr.send();
+    
+    
+    
 }
 
 
@@ -1518,6 +1591,7 @@ function loadGroupArray(){
             }
             else {
                 var text = this.responseText;
+                
                 obj = JSON.parse(text);
                 document.getElementById("winkResult").innerHTML = "Calling Wink REST API";
                 
